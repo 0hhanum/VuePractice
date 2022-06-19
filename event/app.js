@@ -53,4 +53,11 @@ const app = new Vue({
       return this.text;
     },
   },
+  watch: {
+    counter(newVal, oldVal) {
+      console.log("watcher executed!");
+      console.log(newVal);
+      console.log(oldVal);
+    },
+  },
 });
