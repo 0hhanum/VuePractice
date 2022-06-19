@@ -1,0 +1,22 @@
+.div {
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  margin: 20px;
+}
+
+.a {
+  background-color: red;
+}
+
+.b {
+  background-color: purple;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}

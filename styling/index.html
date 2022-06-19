@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Styling</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Dynamic Styling</h1>
+      <section id="styling">
+        <div class="demo" :class="boxAClasses" @click="boxSelected('A')"></div>
+        <!-- :class 에 selected 에 의존하는 computed method 를 넣음으로써 selected 가
+        바뀔 때마다 {active: true / false} 가 삽입 -->
+        <div class="demo" :class="boxBClasses" @click="boxSelected('B')"></div>
+        <div :class="['demo', boxCClasses]" @click="boxSelected('C')"></div>
+      </section>
+    </header>
+    <section id="app"></section>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
