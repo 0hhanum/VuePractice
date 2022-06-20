@@ -13,5 +13,8 @@ const app = new Vue({
         this.goal = "";
       }
     },
+    removeGoal(index) {
+      this.goals.splice(index, 1);
+    },
   },
 });

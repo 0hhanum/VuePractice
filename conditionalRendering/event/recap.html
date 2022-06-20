@@ -3,16 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
+    <title>RECAP</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <section id="task">
-      <input type="number" v-model="number" />
-      <button @click="add">+</button>
-      <button @click="subtract">-</button>
-      <p>{{output}}</p>
+    <section id="app">
+      <input type="text" v-model="inputValue" @keydown.enter="addGoal" />
+      <button @click="addGoal">ADD</button>
+      <ul v-show="visible">
+        <li
+          v-for="(goal, index) in goals"
+          key="goal"
+          @click="removeGoal(index)"
+        >
+          {{goal}}
+        </li>
+      </ul>
+      <div>
+        <button @click="toggleVisible">{{ visible ? 'Hide' : 'Show'}}</button>
+      </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="recap.js"></script>

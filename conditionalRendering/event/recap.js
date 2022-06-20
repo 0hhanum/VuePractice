@@ -1,31 +1,22 @@
 const app = new Vue({
-  el: "#task",
+  el: "#app",
   data() {
     return {
-      number: 0,
-      result: 0,
-      output: "",
+      inputValue: "",
+      goals: [],
+      visible: true,
     };
   },
   methods: {
-    add() {
-      this.result += Number(this.number);
-      this.number = "";
+    toggleVisible() {
+      this.visible = !this.visible;
     },
-    subtract() {
-      this.result -= Number(this.number);
-      this.number = "";
+    removeGoal(index) {
+      this.goals.splice(index, 1);
     },
-  },
-  watch: {
-    result(value) {
-      this.output = value < 38 ? "NOT YET" : "TOO MUCH";
-    },
-    output(value) {
-      if (value !== "") {
-        setTimeout(() => (this.output = ""), 3000);
-        clearTimeout();
-      }
+    addGoal() {
+      this.goals.push(this.inputValue);
+      this.inputValue = "";
     },
   },
 });
