@@ -8,7 +8,8 @@
         v-for="person in people"
         :key="person.id"
         :person="person"
-      />
+      >
+      </contact-component>
     </ul>
   </section>
 </template>

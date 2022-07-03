@@ -14,12 +14,7 @@
 export default {
   name: "contact-component",
   props: {
-    person: {
-      id: String,
-      name: String,
-      number: String,
-      email: String,
-    },
+    person: Object,
   },
   data() {
     return {
