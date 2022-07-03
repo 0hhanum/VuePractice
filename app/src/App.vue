@@ -8,8 +8,7 @@
         v-for="person in people"
         :key="person.id"
         :person="person"
-      >
-      </contact-component>
+      />
     </ul>
   </section>
 </template>
@@ -23,14 +22,16 @@ const app = {
         {
           id: "goodthing",
           name: "hanum",
-          number: "12 1231",
+          number: "123",
           email: "ewef@asd.com",
+          favorite: false,
         },
         {
           id: "hello",
           name: "hah",
           number: "12 121",
           email: "ewesdf@asd.com",
+          favorite: true,
         },
       ],
     };
