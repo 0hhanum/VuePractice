@@ -3,6 +3,7 @@
     <header>
       <h1>People</h1>
     </header>
+    <add-person @submit-person="handleSubmit" />
     <ul>
       <contact-component
         v-for="person in people"
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+import AddPerson from "./components/AddPerson.vue";
 const app = {
   name: "App",
   data() {
@@ -42,6 +44,19 @@ const app = {
       const identifiedPerson = this.people.find((person) => person.id === id);
       identifiedPerson.favorite = !identifiedPerson.favorite;
     },
+    handleSubmit(e) {
+      const target = e.target;
+      const newPerson = { favorite: false };
+      for (let input of target) {
+        const prop = input.id;
+        const value = input.value;
+        newPerson[prop] = value;
+      }
+      this.people.push(newPerson);
+    },
+  },
+  components: {
+    "add-person": AddPerson,
   },
 };
 export default app;
