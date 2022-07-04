@@ -2,7 +2,7 @@
   <li>
     <h2>{{ person.name }} {{ favorite ? "(favorite)" : null }}</h2>
     <button @click="toggleDetails">
-      {{ detailsVisible ? "Hide" : "Show" }} Details
+      {{ detailVisible ? "Hide" : "Show" }} Details
     </button>
     <button @click="toggleFavorite">
       {{ person.favorite ? "Remove" : "Add" }} Favorite
@@ -18,10 +18,8 @@ export default {
   name: "contact-component",
   props: {
     person: {
-      id: String,
-      name: String,
-      number: String,
-      email: String,
+      type: Object,
+      require: true,
     },
   },
   data() {
