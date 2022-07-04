@@ -8,6 +8,7 @@
         v-for="person in people"
         :key="person.id"
         :person="person"
+        @toggle-favorite="toggleFavoriteStatus"
       />
     </ul>
   </section>
@@ -35,6 +36,12 @@ const app = {
         },
       ],
     };
+  },
+  methods: {
+    toggleFavoriteStatus(id) {
+      const identifiedPerson = this.people.find((person) => person.id === id);
+      identifiedPerson.favorite = !identifiedPerson.favorite;
+    },
   },
 };
 export default app;

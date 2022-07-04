@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ person.name }} {{ favorite ? "(favorite)" : null }}</h2>
+    <h2>{{ person.name }} {{ person.favorite ? "(favorite)" : null }}</h2>
     <button @click="toggleDetails">
       {{ detailVisible ? "Hide" : "Show" }} Details
     </button>
@@ -25,7 +25,6 @@ export default {
   data() {
     return {
       detailVisible: false,
-      favorite: this.person.favorite,
     };
   },
   methods: {
@@ -33,7 +32,7 @@ export default {
       this.detailVisible = !this.detailVisible;
     },
     toggleFavorite() {
-      this.favorite = !this.favorite;
+      this.$emit("toggle-favorite", this.person.id);
     },
   },
 };
