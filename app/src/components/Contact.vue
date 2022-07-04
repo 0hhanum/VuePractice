@@ -27,6 +27,7 @@ export default {
       detailVisible: false,
     };
   },
+  emits: ["toggle-favorite"],
   methods: {
     toggleDetails() {
       this.detailVisible = !this.detailVisible;
