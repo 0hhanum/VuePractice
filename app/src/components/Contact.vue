@@ -11,6 +11,7 @@
       <li><strong>Phone: </strong>{{ person.number }}</li>
       <li><strong>Email: </strong>{{ person.email }}</li>
     </ul>
+    <button @click="deleteContact">Delete Contact</button>
   </li>
 </template>
 <script>
@@ -27,13 +28,16 @@ export default {
       detailVisible: false,
     };
   },
-  emits: ["toggle-favorite"],
+  emits: ["toggle-favorite", "delete-contact"],
   methods: {
     toggleDetails() {
       this.detailVisible = !this.detailVisible;
     },
     toggleFavorite() {
       this.$emit("toggle-favorite", this.person.id);
+    },
+    deleteContact() {
+      this.$emit("delete-contact", this.person.id);
     },
   },
 };

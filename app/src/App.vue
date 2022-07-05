@@ -10,6 +10,7 @@
         :key="person.id"
         :person="person"
         @toggle-favorite="toggleFavoriteStatus"
+        @delete-contact="deleteContact"
       />
     </ul>
   </section>
@@ -53,6 +54,9 @@ const app = {
         newPerson[prop] = value;
       }
       this.people.push(newPerson);
+    },
+    deleteContact(id) {
+      this.people = this.people.filter((person) => person.id !== id);
     },
   },
   components: {
