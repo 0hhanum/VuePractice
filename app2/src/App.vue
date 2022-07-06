@@ -3,6 +3,8 @@
     <middle-child ref="middleChild" :message="message"></middle-child>
     <input v-model="message" />
     <span>{{ message }}</span>
+    <hr />
+    <span>{{ messageFromChild }}</span>
   </div>
 </template>
 <script>
@@ -20,18 +22,25 @@ export default {
       objectForProvideData: {
         message: "HI",
       },
+      messageFromChild: "",
     };
   },
   provide() {
     return {
       message: this.message,
       object: this.objectForProvideData,
+      providedFunction: this.getChildMessage,
     };
   },
   watch: {
     message(e) {
       this.$refs.middleChild.$refs.lastChild.changeRefData(e);
       this.objectForProvideData.message = e;
+    },
+  },
+  methods: {
+    getChildMessage(message) {
+      this.messageFromChild = message;
     },
   },
 };
