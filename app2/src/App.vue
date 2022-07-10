@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <middle-child ref="middleChild" :message="message"></middle-child>
+    <middle-child
+      ref="middleChild"
+      :message="message"
+      :func="alertMessage"
+    ></middle-child>
     <input v-model="message" />
     <span>{{ message }}</span>
     <hr />
@@ -41,6 +45,9 @@ export default {
   methods: {
     getChildMessage(message) {
       this.messageFromChild = message;
+    },
+    alertMessage() {
+      alert("HI");
     },
   },
 };
