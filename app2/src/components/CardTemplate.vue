@@ -1,7 +1,11 @@
 <template>
   <section>
     <slot name="firstSlot"></slot>
-    <slot name="secondSlot"></slot>
+    <slot name="secondSlot">
+      <div>
+        <h1>IF THERE IS NO CONTENT, THIS H1 TAG WILL BE SHOWN</h1>
+      </div>
+    </slot>
   </section>
 </template>
 <script>
