@@ -1,19 +1,18 @@
 <template>
   <div>
     <h1>HELLO</h1>
-    <span>I AM CONTENT2222222</span>
-    <div><span>TESTING</span></div>
+    <span>I AM CONTENT4</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "content-component2",
+  name: "content-component4",
 };
 </script>
 
 <style scoped>
 span {
-  color: green;
+  color: yellow;
 }
 </style>

@@ -7,9 +7,13 @@
 
 <script>
 export default {
-  name: "content-component",
+  name: "content-component3",
   props: ["styles"],
 };
 </script>
 
-<style></style>
+<style scoped>
+span {
+  color: blue;
+}
+</style>
