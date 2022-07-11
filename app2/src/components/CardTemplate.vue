@@ -9,7 +9,11 @@
   </section>
 </template>
 <script>
-export default {};
+export default {
+  mounted() {
+    console.log(this.$slots);
+  },
+};
 </script>
 <style scoped>
 /* slot 에 대해서는 가장 바깥 container 에 대한 CSS만 적용가능 */
