@@ -2,7 +2,6 @@
   <ul>
     <li v-for="goal in goals" :key="goal">
       <slot :goal="goal"></slot>
-      >
     </li>
   </ul>
 </template>

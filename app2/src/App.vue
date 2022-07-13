@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <section v-if="false">
+    <!-- <section v-if="false">
       <card-template>
         <template #firstSlot>
           <ContentComponent />
@@ -19,23 +19,37 @@
       <goals-component>
         <template #default="slotProps">{{ slotProps.goal }}</template>
       </goals-component>
+    </div> -->
+    <div>
+      <button @click="setSelectedComponent('manage-item')">MANAGE</button>
+      <button @click="setSelectedComponent('active-item')">ACTIVATE</button>
+      <!-- 
+      <active-item v-if="selectedComponent === 'active-item'"></active-item>
+      <manage-item v-if="selectedComponent === 'manage-item'"></manage-item>
+       -->
+      <component :is="selectedComponent"></component>
     </div>
   </div>
 </template>
 <script>
-import ContentComponent from "./components/Content";
-import ContentComponent2 from "./components/Content2";
-import ContentComponent3 from "./components/Content3";
-// import ContentComponent4 from "./components/Content4";
-import Goals from "./components/Goals";
+import ActiveItem from "./components/ActiveItem.vue";
+import ManageItem from "./components/ManageItem.vue";
 
 export default {
   name: "app",
   components: {
-    ContentComponent: ContentComponent,
-    ContentComponent2: ContentComponent2,
-    ContentComponent3: ContentComponent3,
-    GoalsComponent: Goals,
+    ActiveItem: ActiveItem,
+    ManageItem: ManageItem,
+  },
+  data() {
+    return {
+      selectedComponent: "active-item",
+    };
+  },
+  methods: {
+    setSelectedComponent(component) {
+      this.selectedComponent = component;
+    },
   },
 };
 </script>
