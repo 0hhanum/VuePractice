@@ -27,7 +27,9 @@
       <active-item v-if="selectedComponent === 'active-item'"></active-item>
       <manage-item v-if="selectedComponent === 'manage-item'"></manage-item>
        -->
-      <component :is="selectedComponent"></component>
+      <keep-alive>
+        <component :is="selectedComponent"></component>
+      </keep-alive>
     </div>
   </div>
 </template>
