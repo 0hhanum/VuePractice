@@ -32,12 +32,4 @@ export default {
 };
 </script>
 
-<style scoped>
-ul {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  list-style: none;
-}
-</style>
+<style scoped></style>
