@@ -1,15 +1,16 @@
 <template>
   <div>
     <TheHeader title="SITES" />
-    <StoredSite />
+    <SiteNavigator />
   </div>
 </template>
 
 <script>
-import StoredSite from "./components/StoredSite.vue";
 import TheHeader from "./layouts/TheHeader.vue";
+import SiteNavigator from "./layouts/SiteNavigator.vue";
+
 export default {
-  components: { StoredSite, TheHeader },
+  components: { TheHeader, SiteNavigator },
 };
 </script>
 

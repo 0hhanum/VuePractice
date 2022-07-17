@@ -5,12 +5,13 @@
 </template>
 
 <script>
-import SiteCard from "./resources/SiteCard";
+import SiteCard from "./SiteCard";
 export default {
   name: "StoredSite",
   components: {
     SiteCard,
   },
+  props: ["submitData"],
   data() {
     return {
       sites: [
@@ -29,7 +30,15 @@ export default {
       ],
     };
   },
+  methods: {},
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+}
+</style>
