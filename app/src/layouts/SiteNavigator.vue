@@ -15,7 +15,12 @@
       </BaseCard>
     </div>
     <div id="componentContainer">
-      <component :is="selected" @submit-data="submitData"></component>
+      <component
+        :is="selected"
+        :ref="selected"
+        :tmpStorage="tmpStorage"
+        @submit-data="submitData"
+      ></component>
     </div>
   </div>
 </template>
@@ -29,6 +34,7 @@ export default {
   data() {
     return {
       selected: "StoredSites",
+      tmpStorage: [],
     };
   },
   methods: {
@@ -39,14 +45,13 @@ export default {
       return this.selected === component ? "flat" : null;
     },
     submitData(title, description, link) {
-      return {
+      this.tmpStorage.push({
         title: title,
         description: description,
         link: link,
-      };
+      });
     },
   },
-  computed: {},
 };
 </script>
 

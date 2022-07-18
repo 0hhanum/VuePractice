@@ -11,7 +11,7 @@ export default {
   components: {
     SiteCard,
   },
-  props: ["submitData"],
+  props: ["tmpStorage"],
   data() {
     return {
       sites: [
@@ -30,7 +30,9 @@ export default {
       ],
     };
   },
-  methods: {},
+  mounted() {
+    this.sites = [...this.sites, ...this.tmpStorage];
+  },
 };
 </script>
 
