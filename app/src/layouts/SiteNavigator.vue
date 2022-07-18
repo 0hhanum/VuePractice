@@ -19,7 +19,7 @@
         :is="selected"
         :ref="selected"
         :tmpStorage="tmpStorage"
-        @submit-data="submitData"
+        :submitData="submitData"
       ></component>
     </div>
   </div>
@@ -45,11 +45,13 @@ export default {
       return this.selected === component ? "flat" : null;
     },
     submitData(title, description, link) {
-      this.tmpStorage.push({
+      this.tmpStorage.unshift({
+        id: new Date().toISOString(),
         title: title,
         description: description,
         link: link,
       });
+      this.selected = "StoredSites";
     },
   },
 };

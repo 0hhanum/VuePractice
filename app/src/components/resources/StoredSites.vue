@@ -31,7 +31,7 @@ export default {
     };
   },
   mounted() {
-    this.sites = [...this.sites, ...this.tmpStorage];
+    this.sites = [...this.tmpStorage, ...this.sites];
   },
 };
 </script>

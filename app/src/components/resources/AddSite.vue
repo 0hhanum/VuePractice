@@ -1,6 +1,6 @@
 <template>
   <BaseCard>
-    <form @submit.prevent="submitData">
+    <form @submit.prevent="handleSubmit">
       <div class="input-container">
         <label for="title">TITLE</label>
         <input id="title" type="text" name="title" v-model="title" />
@@ -28,6 +28,7 @@
 import BaseButton from "../UI/BaseButton.vue";
 export default {
   components: { BaseButton },
+  props: ["submitData"],
   data() {
     return {
       title: "",
@@ -36,11 +37,11 @@ export default {
     };
   },
   methods: {
-    submitData() {
+    handleSubmit() {
       const title = this.title;
       const description = this.description;
       const link = this.link;
-      this.$emit("submit-data", title, description, link);
+      this.submitData(title, description, link);
 
       this.title = "";
       this.description = "";
