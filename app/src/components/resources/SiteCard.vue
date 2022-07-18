@@ -6,7 +6,7 @@
           <h3>{{ siteInfo.title }}</h3>
         </header>
         <nav>
-          <a href>Go To Site</a>
+          <a :href="siteInfo.link" target="_blank">Go To Site</a>
         </nav>
       </div>
       <baseButton mode="flat">DELETE</baseButton>

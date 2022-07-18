@@ -21,19 +21,34 @@
       </div>
       <BaseButton type="submit" :style="{ width: '90%' }">ADD SITE</BaseButton>
     </form>
+    <BaseDialog
+      v-show="isInvalidModalOpen"
+      title="입력 사항 누락"
+      @close="closeModal"
+    >
+      <template #default>
+        <p>필수 입력 사항입니다.</p>
+        <p>모든 정보를 입력해주세요.</p>
+      </template>
+      <template #actions>
+        <BaseButton @click.native="closeModal">OKAY</BaseButton>
+      </template>
+    </BaseDialog>
   </BaseCard>
 </template>
 
 <script>
 import BaseButton from "../UI/BaseButton.vue";
+import BaseDialog from "../UI/BaseDialog.vue";
 export default {
-  components: { BaseButton },
+  components: { BaseButton, BaseDialog },
   props: ["submitData"],
   data() {
     return {
       title: "",
       description: "",
       link: "",
+      isInvalidModalOpen: false,
     };
   },
   methods: {
@@ -41,11 +56,17 @@ export default {
       const title = this.title;
       const description = this.description;
       const link = this.link;
-      this.submitData(title, description, link);
-
-      this.title = "";
-      this.description = "";
-      this.link = "";
+      if (this.checkInput()) {
+        this.submitData(title, description, link);
+      } else {
+        this.isInvalidModalOpen = true;
+      }
+    },
+    checkInput() {
+      return this.title && this.description && this.link;
+    },
+    closeModal() {
+      this.isInvalidModalOpen = false;
     },
   },
 };
