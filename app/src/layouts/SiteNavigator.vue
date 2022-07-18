@@ -53,6 +53,15 @@ export default {
       });
       this.selected = "StoredSites";
     },
+    deleteData(id) {
+      const index = this.tmpStorage.find((item) => item.id === id);
+      this.tmpStorage.splice(index, 1);
+    },
+  },
+  provide() {
+    return {
+      deleteData: (id) => this.deleteData(id),
+    };
   },
 };
 </script>

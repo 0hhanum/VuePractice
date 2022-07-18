@@ -9,7 +9,9 @@
           <a :href="siteInfo.link" target="_blank">Go To Site</a>
         </nav>
       </div>
-      <baseButton mode="flat">DELETE</baseButton>
+      <baseButton mode="flat" @click.native="$emit('delete', siteInfo.id)"
+        >DELETE</baseButton
+      >
     </BaseCard>
   </li>
 </template>

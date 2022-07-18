@@ -1,6 +1,11 @@
 <template>
   <ul>
-    <SiteCard v-for="site in sites" :key="site.id" :siteInfo="site" />
+    <SiteCard
+      v-for="site in sites"
+      :key="site.id"
+      :siteInfo="site"
+      @delete="handleDelete"
+    />
   </ul>
 </template>
 
@@ -32,6 +37,14 @@ export default {
   },
   mounted() {
     this.sites = [...this.tmpStorage, ...this.sites];
+  },
+  inject: ["deleteData"],
+  methods: {
+    handleDelete(id) {
+      this.deleteData(id);
+      const localIndex = this.sites.find((item) => item.id === id);
+      this.sites.splice(localIndex, 1);
+    },
   },
 };
 </script>

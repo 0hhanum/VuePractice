@@ -14,4 +14,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+body {
+  min-width: 1060px;
+}
+</style>
