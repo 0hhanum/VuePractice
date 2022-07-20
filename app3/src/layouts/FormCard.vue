@@ -1,9 +1,10 @@
 <template>
   <div id="form-container">
     <form @submit.prevent="handleSubmit">
-      <div class="input-container">
+      <div class="input-container" :class="{ invalid: !nameValidity }">
         <label for="name">Your Name</label>
-        <input type="text" v-model.trim="name" id="name" />
+        <input type="text" v-model.trim="name" id="name" @blur="validateName" />
+        <p class="validity-message" v-if="!nameValidity">이름을 입력하세요</p>
       </div>
       <div class="input-container">
         <label for="age">Your Age</label>
@@ -94,6 +95,7 @@ export default {
       location: "Google",
       interest: [],
       wayToLearn: null,
+      nameValidity: true,
     };
   },
   methods: {
@@ -104,6 +106,9 @@ export default {
       this.interest = [];
       this.wayToLearn = null;
       return;
+    },
+    validateName() {
+      this.nameValidity = this.name === "" ? false : true;
     },
   },
 
@@ -163,5 +168,12 @@ button {
   display: flex;
   width: 100%;
   justify-content: end;
+}
+.validity-message {
+  margin-top: 3px;
+}
+
+.invalid {
+  color: red;
 }
 </style>
