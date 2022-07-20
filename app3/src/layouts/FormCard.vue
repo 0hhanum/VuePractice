@@ -1,5 +1,13 @@
 <template>
   <div id="form-container">
+    <BaseCard :style="ratingStyle" v-if="done"
+      ><RatingCard
+        :rateProp="rating"
+        @rate="rate"
+        @close="closeModal"
+        v-model="componentCommunicateTest"
+      ></RatingCard
+    ></BaseCard>
     <form @submit.prevent="handleSubmit">
       <div class="input-container" :class="{ invalid: !nameValidity }">
         <label for="name">Your Name</label>
@@ -87,6 +95,8 @@
 
 <script>
 import BaseButton from "@/components/BaseButton.vue";
+import RatingCard from "./RatingCard.vue";
+import BaseCard from "@/components/BaseCard.vue";
 export default {
   data() {
     return {
@@ -96,23 +106,40 @@ export default {
       interest: [],
       wayToLearn: null,
       nameValidity: true,
+      done: false,
+      rating: null,
+      ratingStyle: {
+        position: "fixed",
+        width: "300px",
+        height: "300px",
+        border: "3px solid rgba(0, 0, 0, 0.4)",
+      },
     };
   },
   methods: {
+    rate(rating) {
+      this.rating = rating;
+    },
+    closeModal() {
+      this.done = false;
+      console.log(this.rating);
+    },
     handleSubmit() {
       this.name = "";
       this.age = "";
       this.location = "";
       this.interest = [];
       this.wayToLearn = null;
+      this.done = true;
       return;
     },
     validateName() {
       this.nameValidity = this.name === "" ? false : true;
+      console.log(this.componentCommunicateTest);
     },
   },
 
-  components: { BaseButton },
+  components: { BaseButton, RatingCard, BaseCard },
 };
 </script>
 
