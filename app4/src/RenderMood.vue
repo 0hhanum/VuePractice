@@ -12,8 +12,14 @@
 </template>
 
 <script>
+import { getDBData } from "./api/notionApi";
+
 export default {
   props: ["moods"],
+  async mounted() {
+    const data = await getDBData();
+    console.log(data);
+  },
 };
 </script>
 
