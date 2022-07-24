@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Practice3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>VUE EVENTS</h1>
+    </header>
+    <section id="event">
+      <h2>Handle Event</h2>
+      <div>
+        <input type="number" v-bind:placeholder="placeholder" v-model="number"/>
+        <button v-on:click="add">+ {{number}}</button>
+        <button v-on:click="subtract">- {{number}}</button>
+      <div>
+      <p>Count : {{counter}}</p>
+
+      <hr>
+
+      <div>
+        <h1>Input Event</h1>
+        <input type="text" v-model="defaultVal" placeholder="default">
+        <input type="text" v-on:input="setText($event, {defaultVal: defaultVal})" placeholder="text">
+        <!-- Vue event 객체 $event -->
+        <p>TEXT : {{text}}</p>
+      </div>
+
+      <hr>
+      
+      <h1>Event Modifier</h1>
+      
+      <form v-on:submit.prevent="handleSubmit">
+        <h3>Prevent Default</h3>
+        <input type="text">
+        <button>Submit</button>
+      </form>
+
+      <h3>Key Modifier</h3>
+      <input type="text" v-on:input="setText($event, {})" v-on:keyup.enter="confirm"/>
+      <p>{{confirmedText}}</p>
+      <hr>
+      <h1>Practice</h1>
+      <button v-on:click="alert">Alert</button>
+      <div>
+        <input type="text" v-on:input="setTextA" v-bind:value="text">
+        <button v-on:click="reset">RESET</button>
+        <p>{{ testExecute() }}</p>
+        <input type="text" v-on:keydown.enter="handleKeydown">
+        <p>{{ confirmedText }}</p>
+        <p>{{ testComputed }}</p>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
