@@ -1,7 +1,7 @@
 <template>
   <div>
     <MoodCheck @submit-mood="recordMood"></MoodCheck>
-    <RenderMood :moods="moods"></RenderMood>
+    <RenderMood></RenderMood>
   </div>
 </template>
 
@@ -10,7 +10,11 @@ import MoodCheck from "./MoodCheck.vue";
 import RenderMood from "./RenderMood.vue";
 export default {
   components: { MoodCheck, RenderMood },
-  methods: {},
+  methods: {
+    recordMood() {
+      //
+    },
+  },
 };
 </script>
 
