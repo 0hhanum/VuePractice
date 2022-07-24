@@ -22,6 +22,7 @@
 
 <script>
 import ErrorMessage from "./components/ErrorMessage.vue";
+import { writeData } from "./api/notionApi";
 
 export default {
   data() {
@@ -37,7 +38,9 @@ export default {
       this.showInputError = this.mood === "" ? true : false;
       this.showSelectionError = this.sleep === "" ? true : false;
       if (this.mood && this.sleep) {
-        this.$emit("submit-mood", this.mood, this.sleep);
+        const id = new Date().toISOString();
+        this.$emit("submit-mood", id, this.mood, this.sleep);
+        writeData(id, this.mood, this.sleep);
         this.mood = "";
         this.sleep = "";
       }

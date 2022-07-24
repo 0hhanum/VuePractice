@@ -5,4 +5,14 @@ const getDBData = async () => {
   return data;
 };
 
-export { getDBData };
+const writeData = async (id, mood, sleep) => {
+  await fetch("/notion/database/write", {
+    method: "POST",
+    body: JSON.stringify({
+      id: id,
+      mood: mood,
+      sleep: sleep,
+    }),
+  });
+};
+export { getDBData, writeData };

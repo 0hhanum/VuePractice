@@ -23,11 +23,15 @@ export default {
       const datas = response.data;
       datas.forEach((data) => {
         const properties = data.properties;
-        this.moods.push({
-          id: properties.id.title[0].plain_text,
-          mood: properties.mood.rich_text[0].plain_text,
-          sleep: properties.sleep.rich_text[0].plain_text,
-        });
+        try {
+          this.moods.push({
+            id: properties.id.title[0].plain_text,
+            mood: properties.mood.rich_text[0].plain_text,
+            sleep: properties.sleep.rich_text[0].plain_text,
+          });
+        } catch (e) {
+          console.log("NO DATA IN ROWS");
+        }
       });
     });
   },
