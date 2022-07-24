@@ -1,7 +1,7 @@
 <template>
   <div>
     <MoodCheck @submit-mood="recordMood"></MoodCheck>
-    <RenderMood></RenderMood>
+    <RenderMood ref="renderMood"></RenderMood>
   </div>
 </template>
 
@@ -11,8 +11,8 @@ import RenderMood from "./RenderMood.vue";
 export default {
   components: { MoodCheck, RenderMood },
   methods: {
-    recordMood() {
-      //
+    recordMood(id, mood, sleep) {
+      this.$refs.renderMood.moods.unshift({ id: id, mood: mood, sleep: sleep });
     },
   },
 };
