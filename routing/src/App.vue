@@ -15,16 +15,27 @@
 export default {
   methods: {
     toggleRoute() {
-      const currentPath = this.$router.history.current.fullPath;
+      const currentPath = this.$route.path;
       if (currentPath === "/beer") {
         this.$router.push("/peer");
+      } else if (currentPath === "/peer") {
+        this.$router.push("/beer");
       } else {
-        this.$router.push("beer");
+        this.$router.push("/beer");
       }
     },
   },
   data() {
-    return {};
+    return {
+      beers: [
+        { name: "cass", taste: 1 },
+        { name: "filite", taste: 2 },
+        { name: "fillgood", taste: 3 },
+      ],
+    };
+  },
+  provide() {
+    return { beers: this.beers };
   },
 };
 </script>
