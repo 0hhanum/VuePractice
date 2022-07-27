@@ -1,8 +1,9 @@
 <template>
   <div>
     <nav>
-      <router-link to="/beer"><button>BEER</button></router-link>
-      <router-link to="/peer"><button>PEER</button></router-link>
+      <router-link to="/beer">BEER</router-link>
+      <router-link to="/peer">PEER</router-link>
+      <button @click="toggleRoute">Toggle Route</button>
     </nav>
     <main>
       <router-view></router-view>
@@ -12,11 +13,25 @@
 
 <script>
 export default {
-  methods: {},
+  methods: {
+    toggleRoute() {
+      const currentPath = this.$router.history.current.fullPath;
+      if (currentPath === "/beer") {
+        this.$router.push("/peer");
+      } else {
+        this.$router.push("beer");
+      }
+    },
+  },
   data() {
     return {};
   },
 };
 </script>
 
-<style></style>
+<style>
+a:active,
+a.router-link-active {
+  background-color: blue;
+}
+</style>
