@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p>DRINK BEER</p>
     <ul>
       <li v-for="beer in beers" :key="beer.name">
         <router-link :to="getBeerDetail(beer)">

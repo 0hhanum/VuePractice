@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div>DRINK BEER</div>
     <span v-if="selectedBeer"
       >{{ selectedBeer.name }} => {{ selectedBeer.taste }} / 5</span
     >

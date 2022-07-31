@@ -2,11 +2,14 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App.vue";
 
-import BeerList from "./BeerList";
+import BeerScreen from "./screens/BeerScreen";
 import PeerScreen from "./screens/PeerScreen";
 
 import BeerComponent from "./components/BeerComponent";
 import PeerComponent from "./components/PeerComponent";
+
+import BeerFooter from "./components/BeerFooter";
+import PeerFooter from "./components/PeerFooter";
 
 import NotFound from "./screens/NotFound";
 
@@ -17,7 +20,10 @@ const routes = [
   {
     name: "beer",
     path: "/beer",
-    component: BeerList,
+    components: {
+      default: BeerScreen,
+      footer: BeerFooter,
+    },
     children: [
       {
         name: "beer-detail",
@@ -28,12 +34,15 @@ const routes = [
       // dynamic parameter 를 prop 으로 받음
     ],
   },
-  // { path: "/beer", component: BeerList, alias: "/" },
+  // { path: "/beer", component: BeerScreen, alias: "/" },
   // ** alias doesn't change the URL
   {
     name: "peer",
     path: "/peer",
-    component: PeerScreen,
+    components: {
+      default: PeerScreen,
+      footer: PeerFooter,
+    },
     children: [
       {
         name: "peer-detail",
