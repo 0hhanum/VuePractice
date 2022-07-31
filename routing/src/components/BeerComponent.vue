@@ -12,23 +12,24 @@
 <script>
 export default {
   inject: ["beers"],
+  props: ["beerName"], // from dynamic params :beerName
   data() {
     return {
       selectedBeer: null,
     };
   },
   methods: {
-    getSelectedBeer() {
-      const { beerName } = this.$route.params;
+    getSelectedBeer(beerName) {
+      // const { beerName } = this.$route.params;
       this.selectedBeer = this.beers.find((beer) => beer.name === beerName);
     },
   },
   created() {
-    this.getSelectedBeer();
+    this.getSelectedBeer(this.beerName);
   },
   watch: {
-    $route() {
-      this.getSelectedBeer();
+    beerName(newBeerName) {
+      this.getSelectedBeer(newBeerName);
     },
   },
 };

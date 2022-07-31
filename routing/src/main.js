@@ -11,7 +11,7 @@ Vue.config.productionTip = false;
 const routes = [
   { path: "/beer", component: BeerList },
   { path: "/peer", component: PeerComponent },
-  { path: "/beer/:beerName", component: BeerComponent },
+  { path: "/beer/:beerName", component: BeerComponent, props: true },
 ];
 const router = new VueRouter({
   mode: "history",
