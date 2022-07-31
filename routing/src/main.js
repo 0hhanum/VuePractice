@@ -14,10 +14,16 @@ Vue.config.productionTip = false;
 const routes = [
   { path: "/", redirect: "/beer" },
   {
+    name: "beer",
     path: "/beer",
     component: BeerList,
     children: [
-      { path: ":beerName", component: BeerComponent, props: true },
+      {
+        name: "beer-detail",
+        path: ":beerName",
+        component: BeerComponent,
+        props: true,
+      },
       // dynamic parameter 를 prop 으로 받음
     ],
   },

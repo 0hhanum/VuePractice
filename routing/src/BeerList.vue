@@ -19,7 +19,16 @@ export default {
   computed: {},
   methods: {
     getBeerDetail(beer) {
-      return `/beer/${beer.name}`;
+      // return `/beer/${beer.name}`;
+
+      const routerObject = {
+        // path: `/beer/${beer.name}`,
+        name: "beer-detail",
+        params: {
+          beerName: beer.name,
+        },
+      };
+      return routerObject;
     },
   },
   inject: ["beers"],
