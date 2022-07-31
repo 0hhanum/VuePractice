@@ -5,6 +5,7 @@
       >{{ selectedBeer.name }} => {{ selectedBeer.taste }} / 5</span
     >
     <span v-else>Wrong Access</span>
+    <router-link to="/beer/cass"><button>GO TO CASS</button></router-link>
   </div>
 </template>
 
@@ -16,9 +17,19 @@ export default {
       selectedBeer: null,
     };
   },
+  methods: {
+    getSelectedBeer() {
+      const { beerName } = this.$route.params;
+      this.selectedBeer = this.beers.find((beer) => beer.name === beerName);
+    },
+  },
   created() {
-    const { beerName } = this.$route.params;
-    this.selectedBeer = this.beers.find((beer) => beer.name === beerName);
+    this.getSelectedBeer();
+  },
+  watch: {
+    $route() {
+      this.getSelectedBeer();
+    },
   },
 };
 </script>
