@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import App from "./App.vue";
 
 import BeerList from "./BeerList";
+import PeerScreen from "./screens/PeerScreen";
 
 import BeerComponent from "./components/BeerComponent";
 import PeerComponent from "./components/PeerComponent";
@@ -29,7 +30,18 @@ const routes = [
   },
   // { path: "/beer", component: BeerList, alias: "/" },
   // ** alias doesn't change the URL
-  { path: "/peer", component: PeerComponent },
+  {
+    name: "peer",
+    path: "/peer",
+    component: PeerScreen,
+    children: [
+      {
+        name: "peer-detail",
+        path: "detail",
+        component: PeerComponent,
+      },
+    ],
+  },
   { path: "/:catchAll(.*)", component: NotFound },
 ];
 const router = new VueRouter({
