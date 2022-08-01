@@ -64,6 +64,15 @@ const router = new VueRouter({
   },
 });
 
+// router 에 의한 이동이 있을 때 호출
+router.beforeEach((to, from, next) => {
+  /* next(false); route 변경 중지 => unauthorized user 에게 적용가능
+  if (to.name !== "beer") next("/beer"); // route 변경 실행
+  else next();
+  */
+  next();
+});
+
 Vue.use(VueRouter);
 
 new Vue({
