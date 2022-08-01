@@ -31,7 +31,7 @@ const routes = [
         component: BeerComponent,
         props: true,
         beforeEnter(to, from, next) {
-          if (to.name === "beer") next();
+          if (from.name === "beer") next();
           else
             next({
               name: "beer",

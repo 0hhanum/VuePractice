@@ -23,9 +23,17 @@ export default {
           name: this.peerName,
         },
       };
-      this.$router.push(routerObject);
       this.peerName = "";
+      this.$router.push(routerObject);
     },
+  },
+  beforeRouteLeave(to, from, next) {
+    if (this.peerName) {
+      const confirmLeave = confirm("Are you sure?");
+      next(confirmLeave);
+    } else {
+      next();
+    }
   },
 };
 </script>
