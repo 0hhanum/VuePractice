@@ -1,6 +1,7 @@
 <template>
   <div>
     <p>DRINK BEER</p>
+    <router-view></router-view>
     <ul>
       <li v-for="beer in beers" :key="beer.name">
         <router-link :to="getBeerDetail(beer)">
@@ -8,7 +9,6 @@
         </router-link>
       </li>
     </ul>
-    <router-view></router-view>
   </div>
 </template>
 
@@ -36,4 +36,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+a {
+  display: flex;
+  margin-bottom: 60px;
+  height: 40px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(1, 1, 1, 0.4);
+}
+
+a.router-link-active {
+  border-bottom: 1px solid red;
+}
+</style>

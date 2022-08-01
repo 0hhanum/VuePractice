@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="container">
     <span v-if="selectedBeer"
       >{{ selectedBeer.name }} => {{ selectedBeer.taste }} / 5</span
     >
@@ -34,4 +34,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#container {
+  display: flex;
+  background-color: black;
+  color: white;
+  height: 50px;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+button {
+  margin-left: 50px;
+}
+</style>

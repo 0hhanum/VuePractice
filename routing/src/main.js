@@ -56,6 +56,12 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   routes,
+  // active route 클래스명 지정
+  // linkActiveClass: "active",
+  scrollBehavior(to, from, savedPosition) {
+    // 어디로 scroll 할지 return
+    return savedPosition || { x: 0, y: 0 };
+  },
 });
 
 Vue.use(VueRouter);

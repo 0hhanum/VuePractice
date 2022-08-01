@@ -34,6 +34,10 @@ export default {
         { name: "cass", taste: 1 },
         { name: "filite", taste: 2 },
         { name: "fillgood", taste: 3 },
+        { name: "IPA", taste: 3 },
+        { name: "ASAHI", taste: 3 },
+        { name: "GIRIN", taste: 3 },
+        { name: "HIheineken", taste: 3 },
       ],
     };
   },
