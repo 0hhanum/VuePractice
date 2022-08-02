@@ -1,13 +1,18 @@
 <template>
   <div id="container">
     <div id="firstContainer" class="box">
-      <div id="box"></div>
-      <button>ANIMATE</button>
+      <div id="box" :class="{ animate: animateActivated }"></div>
+      <button @click="animate">ANIMATE</button>
     </div>
     <div id="secondContainer" class="box">
       <button @click="openDialog">SHOW DIALOG</button>
     </div>
-    <dialog open v-show="dialogOpen">HI</dialog>
+    <dialog open v-show="dialogOpen">
+      <div id="dialog-button-container">
+        <button @click="closeDialog">X</button>
+      </div>
+      <strong>I AM DIALOG</strong>
+    </dialog>
   </div>
 </template>
 
@@ -16,11 +21,18 @@ export default {
   data() {
     return {
       dialogOpen: false,
+      animateActivated: false,
     };
   },
   methods: {
     openDialog() {
       this.dialogOpen = true;
+    },
+    closeDialog() {
+      this.dialogOpen = false;
+    },
+    animate() {
+      this.animateActivated = !this.animateActivated;
     },
   },
 };
@@ -65,6 +77,7 @@ body {
   height: 120px;
   background-color: black;
   margin-bottom: 50px;
+  transition: all 1s ease-in-out;
 }
 button {
   border: none;
@@ -73,5 +86,18 @@ button {
   outline: none;
   padding: 10px 20px;
   border-radius: 20px;
+}
+dialog {
+  margin-top: 200px;
+  width: 1200px;
+  height: 200px;
+}
+#dialog-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.animate {
+  transform: translateX(-5rem);
 }
 </style>
