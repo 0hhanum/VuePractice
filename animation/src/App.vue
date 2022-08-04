@@ -2,7 +2,11 @@
   <div id="container">
     <div id="ListContainer" class="box">
       <ul>
-        <li v-for="text in texts" :key="text">{{ text }}</li>
+        <transition-group name="groupTransition">
+          <li @click="removeUser(text)" v-for="text in texts" :key="text">
+            {{ text }}
+          </li>
+        </transition-group>
       </ul>
       <div>
         <input type="text" v-model="text" @keydown.enter="submit" />
@@ -50,6 +54,7 @@ export default {
       animateActivated: false,
       showing: false,
       texts: ["hello", "i", "need", "more", "sleep"],
+      text: "",
     };
   },
   methods: {
@@ -80,6 +85,9 @@ export default {
         this.texts.push(this.text);
         this.text = "";
       }
+    },
+    removeUser(e) {
+      this.texts = this.texts.filter((text) => text !== e);
     },
   },
 };
@@ -213,11 +221,37 @@ dialog {
 }
 ul {
   list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding: 0;
 }
-li {
+li,
+input {
   border: 1px solid #ccc;
   padding: 1rem 10rem;
   border-radius: 20px;
   margin-bottom: 15px;
+}
+
+#ListContainer {
+  flex-direction: column;
+  align-items: center;
+}
+.groupTransition-enter-active {
+  animation: group 0.5s ease-in-out;
+}
+.groupTransition-leave-active {
+  animation: group 0.5s ease-in-out reverse;
+}
+
+@keyframes group {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 </style>
