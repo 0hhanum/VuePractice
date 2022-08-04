@@ -1,5 +1,13 @@
 <template>
   <div id="container">
+    <div id="ListContainer" class="box">
+      <ul>
+        <li v-for="text in texts" :key="text">{{ text }}</li>
+      </ul>
+      <div>
+        <input type="text" v-model="text" @keydown.enter="submit" />
+      </div>
+    </div>
     <div id="firstContainer" class="box">
       <div id="box" :class="{ animate: animateActivated }"></div>
       <button @click="animate">ANIMATE</button>
@@ -7,7 +15,23 @@
     <div id="secondContainer" class="box">
       <button @click="openDialog">SHOW DIALOG</button>
     </div>
-    <transition>
+    <transition
+      name="text"
+      @before-enter="beforeEnter"
+      @before-leave="beforeLeave"
+    >
+      <div id="fourthContainer" class="box" v-if="showing">
+        <p>HIHIHI</p>
+      </div>
+    </transition>
+    <div id="thirdContainer" class="box">
+      <transition name="btn" mode="out-in">
+        <!-- KEY 가 있어야 어떤 element 가 추가/제거 되는지 추적 가능 -->
+        <button key="show" @click="show" v-if="!showing">SHOW</button>
+        <button key="hide" @click="hide" v-else>HIDE</button>
+      </transition>
+    </div>
+    <transition name="modal">
       <dialog open v-show="dialogOpen">
         <div id="dialog-button-container">
           <button @click="closeDialog">X</button>
@@ -24,6 +48,8 @@ export default {
     return {
       dialogOpen: false,
       animateActivated: false,
+      showing: false,
+      texts: ["hello", "i", "need", "more", "sleep"],
     };
   },
   methods: {
@@ -37,6 +63,24 @@ export default {
       this.animateActivated = false;
       setTimeout(() => (this.animateActivated = true), 100);
     },
+    show() {
+      this.showing = true;
+    },
+    hide() {
+      this.showing = false;
+    },
+    beforeEnter() {
+      //
+    },
+    beforeLeave() {
+      //
+    },
+    submit() {
+      if (this.text) {
+        this.texts.push(this.text);
+        this.text = "";
+      }
+    },
   },
 };
 </script>
@@ -44,7 +88,6 @@ export default {
 <style>
 body {
   width: 100vw;
-  height: 100vh;
   margin: 0px;
   display: flex;
   justify-content: center;
@@ -71,7 +114,9 @@ body {
   flex-direction: column;
 }
 
-#secondContainer {
+#secondContainer,
+#thirdContainer,
+#fourthContainer {
   height: 100px;
 }
 
@@ -89,6 +134,7 @@ button {
   outline: none;
   padding: 10px 20px;
   border-radius: 20px;
+  width: 200px;
 }
 dialog {
   margin-top: 200px;
@@ -96,7 +142,7 @@ dialog {
   height: 200px;
   border-radius: 20px;
   border: 1px solid rgba(1, 1, 1, 0.4);
-  box-shadow: 2px 2px rgba(1, 1, 1, 0.3);
+  box-shadow: 20px 20px rgba(1, 1, 1, 0.03);
 }
 #dialog-button-container {
   width: 100%;
@@ -108,24 +154,42 @@ dialog {
 }
 
 /* <transition> 태그 사용 */
-.v-enter {
+/* .v-enter {
   opacity: 0;
-  transform: translateY(-30px);
-}
+} */
 
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.5s ease-in-out;
+.modal-enter-active,
+.text-enter-active {
+  animation: modal 0.5s ease-in-out;
 }
-.v-enter-to {
+.modal-leave-active {
+  animation: modal 0.5s ease-in-out reverse;
+}
+/* .v-enter-to {
   opacity: 1;
 }
 
 .v-leave-to {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(-30px); 
+}
+*/
+
+.btn-enter-active {
+  animation: opacityAnimation 0.5s ease-out;
+}
+.btn-leave-active {
+  animation: opacityAnimation 0.5s ease-in reverse;
 }
 
+@keyframes opacityAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @keyframes animation {
   10% {
     transform: translateX(-5rem) scale(1);
@@ -140,11 +204,20 @@ dialog {
 @keyframes modal {
   from {
     opacity: 0;
-    transform: scale(0.8);
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
+}
+ul {
+  list-style: none;
+}
+li {
+  border: 1px solid #ccc;
+  padding: 1rem 10rem;
+  border-radius: 20px;
+  margin-bottom: 15px;
 }
 </style>
