@@ -1,13 +1,16 @@
 <template>
   <div id="container">
-    <div id="ListContainer" class="box">
-      <ul>
-        <transition-group name="groupTransition">
-          <li @click="removeUser(text)" v-for="text in texts" :key="text">
-            {{ text }}
-          </li>
-        </transition-group>
-      </ul>
+    <div id="listContainer" class="box">
+      <transition-group name="group-transition" tag="ul">
+        <li
+          @click="removeUser(text)"
+          v-for="text in texts"
+          :key="text"
+          class="group-transition-item"
+        >
+          {{ text }}
+        </li>
+      </transition-group>
       <div>
         <input type="text" v-model="text" @keydown.enter="submit" />
       </div>
@@ -82,7 +85,7 @@ export default {
     },
     submit() {
       if (this.text) {
-        this.texts.push(this.text);
+        this.texts.unshift(this.text);
         this.text = "";
       }
     },
@@ -179,7 +182,7 @@ dialog {
 
 .v-leave-to {
   opacity: 0;
-  transform: translateY(-30px); 
+  transform: translateY(-30px);
 }
 */
 
@@ -221,8 +224,7 @@ dialog {
 }
 ul {
   list-style: none;
-  margin-block-start: 0;
-  margin-block-end: 0;
+  margin: 0;
   padding: 0;
 }
 li,
@@ -232,16 +234,19 @@ input {
   border-radius: 20px;
   margin-bottom: 15px;
 }
-
-#ListContainer {
+#listContainer {
   flex-direction: column;
   align-items: center;
 }
-.groupTransition-enter-active {
+.group-transition-enter-active {
   animation: group 0.5s ease-in-out;
 }
-.groupTransition-leave-active {
+.group-transition-leave-active {
   animation: group 0.5s ease-in-out reverse;
+  position: absolute;
+}
+.group-transition-move {
+  transition: transform 0.5s ease;
 }
 
 @keyframes group {
