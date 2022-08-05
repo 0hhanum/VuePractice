@@ -1,7 +1,12 @@
 <template>
   <div id="container">
-    <div id="listContainer" class="box">
-      <transition-group name="group-transition" tag="ul">
+    <div id="listContainer" class="box" ref="groupBox">
+      <transition-group
+        name="group-transition"
+        tag="ul"
+        @before-leave="animateGroupLeave"
+        @before-enter="animateGroupEnter"
+      >
         <li
           @click="removeUser(text)"
           v-for="text in texts"
@@ -92,6 +97,18 @@ export default {
     removeUser(e) {
       this.texts = this.texts.filter((text) => text !== e);
     },
+    animateGroupLeave() {
+      const box = this.$refs.groupBox;
+      const currentHeight = box.offsetHeight;
+      setTimeout(() => {
+        box.style.height = currentHeight - 68.5 + "px";
+      }, 500);
+    },
+    animateGroupEnter() {
+      const box = this.$refs.groupBox;
+      const currentHeight = box.clientHeight + 68.5;
+      box.style.height = currentHeight + "px";
+    },
   },
 };
 </script>
@@ -158,7 +175,7 @@ dialog {
 #dialog-button-container {
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .animate {
   animation: animation 1s ease-in-out;
@@ -237,6 +254,7 @@ input {
 #listContainer {
   flex-direction: column;
   align-items: center;
+  transition: height 0.5s ease;
 }
 .group-transition-enter-active {
   animation: group 0.5s ease-in-out;
