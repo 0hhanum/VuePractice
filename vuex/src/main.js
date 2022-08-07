@@ -12,8 +12,8 @@ const store = new Vuex.Store({
     };
   },
   mutations: {
-    addItem(state, item) {
-      state.items.push(item);
+    addItem(state, payload) {
+      state.items.push(payload.value);
     },
   },
   getters: {
@@ -24,6 +24,11 @@ const store = new Vuex.Store({
       const items = getter.getItems;
       items.pop();
       return items;
+    },
+  },
+  actions: {
+    addItem(context, payload) {
+      context.commit("addItem", payload);
     },
   },
 });
