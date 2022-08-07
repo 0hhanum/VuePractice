@@ -18,17 +18,22 @@
     <div>
       <MyComponent2></MyComponent2>
     </div>
+    <div>
+      <GetState></GetState>
+    </div>
   </div>
 </template>
 
 <script>
 import MyComponent from "./components/MyComponent";
 import MyComponent2 from "./components/MyComponent2";
+import GetState from "./components/GetState";
 
 export default {
   components: {
     MyComponent,
     MyComponent2,
+    GetState,
   },
   data() {
     return {

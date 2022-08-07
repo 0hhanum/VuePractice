@@ -16,6 +16,11 @@ const store = new Vuex.Store({
       state.items.push(item);
     },
   },
+  getters: {
+    getItems(state) {
+      return [...state.items, "1", "2", "3"];
+    },
+  },
 });
 
 new Vue({
