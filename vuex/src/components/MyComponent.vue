@@ -1,10 +1,12 @@
 <template>
-  <ul>
-    <li v-for="item in items" :key="item">
-      {{ item }}
-    </li>
-    <button @click="del">del</button>
-  </ul>
+  <div>
+    <ul>
+      <li v-for="item in items" :key="item">
+        {{ item }}
+      </li>
+      <button @click="del">del</button>
+    </ul>
+  </div>
 </template>
 
 <script>

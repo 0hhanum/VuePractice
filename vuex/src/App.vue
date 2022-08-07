@@ -11,19 +11,24 @@
       </ul>
     </div>
     <hr />
-    <div></div>
     <ul>
-      <li v-for="item in $store.state.items" :key="item">{{ item }}</li>
+      <li v-for="item in storedItems" :key="item">{{ item }}</li>
     </ul>
+    <hr />
+    <div>
+      <MyComponent2></MyComponent2>
+    </div>
   </div>
 </template>
 
 <script>
 import MyComponent from "./components/MyComponent";
+import MyComponent2 from "./components/MyComponent2";
 
 export default {
   components: {
     MyComponent,
+    MyComponent2,
   },
   data() {
     return {
@@ -34,6 +39,11 @@ export default {
     return {
       items: this.items,
     };
+  },
+  computed: {
+    storedItems() {
+      return this.$store.state.items;
+    },
   },
 };
 </script>
