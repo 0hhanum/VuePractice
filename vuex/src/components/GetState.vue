@@ -7,6 +7,10 @@
     <ul>
       <li v-for="item in getItemsByGetter" :key="item">{{ item }}</li>
     </ul>
+    <hr />
+    <ul>
+      <li v-for="item in getItemsByGetter2" :key="item">{{ item }}</li>
+    </ul>
   </div>
 </template>
 
@@ -19,6 +23,9 @@ export default {
     },
     getItemsByGetter() {
       return this.$store.getters.getItems;
+    },
+    getItemsByGetter2() {
+      return this.$store.getters.getItems2;
     },
   },
 };

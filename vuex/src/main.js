@@ -20,6 +20,11 @@ const store = new Vuex.Store({
     getItems(state) {
       return [...state.items, "1", "2", "3"];
     },
+    getItems2(_, getter) {
+      const items = getter.getItems;
+      items.pop();
+      return items;
+    },
   },
 });
 
