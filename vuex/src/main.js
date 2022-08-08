@@ -5,7 +5,21 @@ import App from "./App.vue";
 Vue.config.productionTip = false;
 Vue.use(Vuex);
 
+const storeTWO = new Vuex.Store({
+  state() {
+    return {
+      test: "hello~",
+    };
+  },
+  mutations() {},
+  actions() {},
+  getters() {},
+});
+
 const store = new Vuex.Store({
+  modules: {
+    storeTWO,
+  },
   state() {
     return {
       items: ["a", "b", "c", "d"],

@@ -31,6 +31,7 @@
     </div>
     <div>
       <UserAuth></UserAuth>
+      <p>{{ fromStore2 }}</p>
     </div>
   </div>
 </template>
@@ -62,6 +63,9 @@ export default {
   computed: {
     storedItems() {
       return this.$store.state.items;
+    },
+    fromStore2() {
+      return this.$store.state.storeTWO.test;
     },
     ...mapGetters(["getIsLoggedIn"]),
   },
