@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="false">
+    <div v-if="getIsLoggedIn">
       <div>
         <MyComponent></MyComponent>
       </div>
@@ -23,11 +23,14 @@
         <GetState></GetState>
       </div>
     </div>
-    <div>
+    <div v-if="false">
       <ul>
         <li v-for="item in storedItems" :key="item">{{ item }}</li>
         <button @click="addItem({ value: 131313 })">add</button>
       </ul>
+    </div>
+    <div>
+      <UserAuth></UserAuth>
     </div>
   </div>
 </template>
@@ -36,13 +39,15 @@
 import MyComponent from "./components/MyComponent";
 import MyComponent2 from "./components/MyComponent2";
 import GetState from "./components/GetState";
-import { mapActions } from "vuex";
+import UserAuth from "./components/UserAuth";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
     MyComponent,
     MyComponent2,
     GetState,
+    UserAuth,
   },
   data() {
     return {
@@ -58,6 +63,7 @@ export default {
     storedItems() {
       return this.$store.state.items;
     },
+    ...mapGetters(["getIsLoggedIn"]),
   },
   methods: {
     ...mapActions(["addItem"]),
