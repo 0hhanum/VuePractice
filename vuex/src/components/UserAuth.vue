@@ -2,6 +2,7 @@
   <div>
     <button @click="login">LOGIN</button>
     <button @click="logout">LOGOUT</button>
+    {{ getIsLoggedIn }}
   </div>
 </template>
 
@@ -10,6 +11,12 @@ import { mapActions } from "vuex";
 export default {
   methods: {
     ...mapActions(["login", "logout"]),
+  },
+  computed: {
+    getIsLoggedIn() {
+      console.log(this.$store);
+      return this.$store.state.storeTWO;
+    },
   },
 };
 </script>

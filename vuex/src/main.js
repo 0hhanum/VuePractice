@@ -5,16 +5,18 @@ import App from "./App.vue";
 Vue.config.productionTip = false;
 Vue.use(Vuex);
 
-const storeTWO = new Vuex.Store({
+const storeTWO = {
   state() {
     return {
       test: "hello~",
     };
   },
-  mutations() {},
-  actions() {},
-  getters() {},
-});
+  getters: {
+    getTest(state) {
+      return state.test;
+    },
+  },
+};
 
 const store = new Vuex.Store({
   modules: {
@@ -38,6 +40,12 @@ const store = new Vuex.Store({
     },
   },
   getters: {
+    getChildState(state, getters, rootState, rootGetters) {
+      console.log(state);
+      console.log(getters);
+      console.log(rootState);
+      console.log(rootGetters);
+    },
     getItems(state) {
       return [...state.items, "1", "2", "3"];
     },
