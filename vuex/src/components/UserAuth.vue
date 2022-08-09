@@ -15,7 +15,7 @@ export default {
   computed: {
     getIsLoggedIn() {
       console.log(this.$store.getters.getTest);
-      return this.$store.state.storeTWO;
+      return this.$store.state.firstModule;
     },
   },
 };

@@ -65,7 +65,7 @@ export default {
       return this.$store.state.items;
     },
     fromStore2() {
-      return this.$store.state.storeTWO.test;
+      return this.$store.state.firstModule.test;
     },
     ...mapGetters(["getIsLoggedIn"]),
   },
