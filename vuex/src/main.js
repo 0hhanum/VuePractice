@@ -12,7 +12,9 @@ const storeTWO = {
     };
   },
   getters: {
-    getTest(state) {
+    getTest(state, _, rootState, rootGetter) {
+      console.log(rootState);
+      console.log(rootGetter);
       return state.test;
     },
   },

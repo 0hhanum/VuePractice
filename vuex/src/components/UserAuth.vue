@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     getIsLoggedIn() {
-      console.log(this.$store);
+      console.log(this.$store.getters.getTest);
       return this.$store.state.storeTWO;
     },
   },
