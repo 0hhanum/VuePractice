@@ -2,7 +2,7 @@ import VueRouter from "vue-router";
 
 import PotatoDetail from "./screens/potatoes/PotatoDetail.vue";
 import PotatoList from "./screens/potatoes/PotatoList.vue";
-import PotatoBuy from "./screens/potatoes/PotatoBuy.vue";
+import PotatoRegister from "./screens/potatoes/PotatoRegister.vue";
 
 import OrderPotato from "./screens/orders/OrderPotato.vue";
 import OrderedPotato from "./screens/orders/OrderedPotato.vue";
@@ -15,9 +15,9 @@ const routes = [
   {
     path: "/potatoes/:id",
     component: PotatoDetail,
-    children: [{ path: "buy", component: PotatoBuy }],
+    children: [{ path: "order", component: OrderPotato }],
   },
-  { path: "/order", component: OrderPotato },
+  { path: "/register", component: PotatoRegister },
   { path: "/ordered", component: OrderedPotato },
   { path: "/:notFound(.*)", component: NotFound },
 ];

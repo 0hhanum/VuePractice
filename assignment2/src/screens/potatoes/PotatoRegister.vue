@@ -1,5 +1,5 @@
 <template>
-  <h1>ORDERED</h1>
+  <h1>REGISTER POTATO</h1>
 </template>
 
 <script>
