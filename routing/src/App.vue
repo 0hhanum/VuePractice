@@ -44,6 +44,7 @@ export default {
   provide() {
     return { beers: this.beers };
   },
+  mounted() {},
 };
 </script>
 
