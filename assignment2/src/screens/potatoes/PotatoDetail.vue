@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>DETAIL</h1>
-    <router-link :to="`${id}/order`">ORDER</router-link>
+    <router-link :to="`${currentPath}/order`">ORDER</router-link>
     <router-view></router-view>
   </div>
 </template>
@@ -10,11 +10,11 @@
 export default {
   data() {
     return {
-      id: null,
+      currentPath: null,
     };
   },
   mounted() {
-    this.id = this.$router.currentRoute.params.id;
+    this.currentPath = this.$route.path;
   },
 };
 </script>

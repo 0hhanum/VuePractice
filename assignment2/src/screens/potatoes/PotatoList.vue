@@ -7,11 +7,12 @@
         <router-link to="/register">REGISTER</router-link>
       </div>
       <ul v-if="hasPotatoes">
-        <PotatoComponent
-          v-for="potato in getPotatoes"
-          :key="potato.id"
-          :potato="potato"
-        />
+        <BaseCard>
+          <PotatoComponent
+            v-for="potato in getPotatoes"
+            :key="potato.id"
+            :potato="potato"
+        /></BaseCard>
       </ul>
       <h1 v-else>NO POTATOES -_-;</h1>
     </section>

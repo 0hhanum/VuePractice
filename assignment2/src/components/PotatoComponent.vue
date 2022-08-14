@@ -1,15 +1,17 @@
 <template>
-  <li>
-    <div class="potato-info-box">
-      <h3 class="potato-info">{{ potato.name }}</h3>
-      <span class="potato-info">{{ potato.weight }} kg</span>
-      <span class="potato-info">{{ potato.price }} $</span>
-    </div>
-    <div class="action">
-      <router-link :to="getDetailLink">Details</router-link>
-      <router-link :to="getOrderLink">Order</router-link>
-    </div>
-  </li>
+  <BaseCard :cssObject="cssObject">
+    <li>
+      <div class="potato-info-box">
+        <h3 class="potato-info">{{ potato.name }}</h3>
+        <span class="potato-info">{{ potato.weight }} kg</span>
+        <span class="potato-info">{{ potato.price }} $</span>
+      </div>
+      <div class="action">
+        <router-link :to="getDetailLink">Details</router-link>
+        <router-link :to="getOrderLink">Order</router-link>
+      </div>
+    </li>
+  </BaseCard>
 </template>
 
 <script>
@@ -25,18 +27,22 @@ export default {
       return `/potatoes/${this.potato.id}/order`;
     },
   },
+  data() {
+    return {
+      cssObject: {
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+      },
+    };
+  },
 };
 </script>
 
 <style scoped>
 li {
-  border-bottom: 0.8px solid white;
-  padding: 20px;
+  padding: 0;
   display: flex;
   justify-content: space-between;
-  background-color: rgba(1, 1, 1, 0.2);
   margin-bottom: 4px;
-  border-radius: 10px;
 }
 .potato-info-box {
   display: flex;
