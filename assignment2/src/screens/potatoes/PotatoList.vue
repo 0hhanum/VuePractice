@@ -1,17 +1,24 @@
 <template>
   <div>
-    <section>FILTER</section>
+    <section id="filter">
+      <PotatoFilter
+        ref="filter"
+        @weight-changed="weightChanged"
+        @name-changed="nameChanged"
+        @price-changed="priceChanged"
+      ></PotatoFilter>
+    </section>
     <section>
       <ul v-if="hasPotatoes">
         <BaseCard>
           <div class="controls">
             <BaseButton>REFRESH</BaseButton>
-            <BaseButton link="true" to="/register"
+            <BaseButton :link="true" to="/register"
               >REGISTER MY POTATO</BaseButton
             >
           </div>
           <PotatoComponent
-            v-for="potato in getPotatoes"
+            v-for="potato in getFilteredPotatoes"
             :key="potato.id"
             :potato="potato"
         /></BaseCard>
@@ -24,15 +31,50 @@
 <script>
 import { mapGetters } from "vuex";
 import PotatoComponent from "@/components/PotatoComponent.vue";
+import PotatoFilter from "@/components/PotatoFilter.vue";
 
 export default {
   data() {
-    return {};
+    return {
+      filterName: "",
+      filterWeight: null,
+      filterPrice: null,
+    };
   },
   computed: {
     ...mapGetters(["getPotatoes", "hasPotatoes"]),
+    getFilteredPotatoes() {
+      let potatoes = this.getPotatoes;
+      potatoes = potatoes.filter((potato) => {
+        let filterToggle = true;
+        if (this.filterName) {
+          filterToggle = potato.name
+            .toLowerCase()
+            .includes(this.filterName.toLowerCase());
+        }
+        if (this.filterWeight) {
+          filterToggle = potato.weight <= this.filterWeight;
+        }
+        if (this.filterPrice) {
+          filterToggle = potato.price <= this.filterPrice;
+        }
+        return filterToggle;
+      });
+      return potatoes;
+    },
   },
-  components: { PotatoComponent },
+  components: { PotatoComponent, PotatoFilter },
+  methods: {
+    nameChanged(name) {
+      this.filterName = name;
+    },
+    weightChanged(weight) {
+      this.filterWeight = weight;
+    },
+    priceChanged(price) {
+      this.filterPrice = price;
+    },
+  },
 };
 </script>
 

@@ -1,9 +1,22 @@
 <template>
-  <div>
-    <h1>DETAIL</h1>
-    <router-link :to="`${currentPath}/order`">ORDER</router-link>
+  <section>
+    <BaseCard style="width: 800px; padding: 30px 40px">
+      <div id="container">
+        <div>
+          <h1>{{ potato.name }}</h1>
+          <h1>{{ potato.weight }}KG</h1>
+          <h1>{{ potato.price }}$</h1>
+          <BaseButton :link="true" :to="`${currentPath}/order`"
+            >ORDER</BaseButton
+          >
+        </div>
+        <div>
+          <img :src="potato.img" />
+        </div>
+      </div>
+    </BaseCard>
     <router-view></router-view>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -13,10 +26,30 @@ export default {
       currentPath: null,
     };
   },
-  mounted() {
+  created() {
     this.currentPath = this.$route.path;
+    const potatoId = this.$route.params.id;
+    this.potato = this.$store.getters.getPotatoes.find(
+      (potato) => potato.id === potatoId
+    );
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+img {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(1, 1, 1, 0.2);
+}
+#container {
+  display: flex;
+  justify-content: space-between;
+}
+a {
+  display: flex;
+  width: fit-content;
+  margin-top: 120px;
+}
+</style>

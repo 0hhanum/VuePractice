@@ -7,10 +7,10 @@
         <span class="potato-info">{{ potato.price }} $</span>
       </div>
       <div class="action">
-        <BaseButton :styleObject="buttonCSS" link="true" :to="getDetailLink"
+        <BaseButton :styleObject="buttonCSS" :link="true" :to="getDetailLink"
           >Details</BaseButton
         >
-        <BaseButton :styleObject="buttonCSS" link="true" :to="getOrderLink"
+        <BaseButton :styleObject="buttonCSS" :link="true" :to="getOrderLink"
           >Order</BaseButton
         >
       </div>
