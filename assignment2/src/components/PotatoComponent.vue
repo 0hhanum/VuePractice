@@ -7,8 +7,12 @@
         <span class="potato-info">{{ potato.price }} $</span>
       </div>
       <div class="action">
-        <router-link :to="getDetailLink">Details</router-link>
-        <router-link :to="getOrderLink">Order</router-link>
+        <BaseButton :styleObject="buttonCSS" link="true" :to="getDetailLink"
+          >Details</BaseButton
+        >
+        <BaseButton :styleObject="buttonCSS" link="true" :to="getOrderLink"
+          >Order</BaseButton
+        >
       </div>
     </li>
   </BaseCard>
@@ -32,6 +36,11 @@ export default {
       cssObject: {
         backgroundColor: "rgba(0, 0, 0, 0.2)",
       },
+      buttonCSS: {
+        padding: "0.5rem",
+        marginLeft: "1rem",
+        fontSize: "1em",
+      },
     };
   },
 };
@@ -43,6 +52,7 @@ li {
   display: flex;
   justify-content: space-between;
   margin-bottom: 4px;
+  align-items: center;
 }
 .potato-info-box {
   display: flex;
@@ -58,9 +68,5 @@ span {
   overflow: hidden;
   border-right: 1px solid black;
   text-align: center;
-}
-.action a {
-  margin-right: 10px;
-  text-decoration: none;
 }
 </style>

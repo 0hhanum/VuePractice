@@ -7,11 +7,12 @@ import store from "./store/index";
 import router from "./router";
 
 import BaseCard from "@/components/ui/BaseCard";
-// import BaseButton from "@/components/ui/BaseButton";
+import BaseButton from "@/components/ui/BaseButton";
 // import BaseBadge from "@/components/ui/BaseBadge";
 
 Vue.use(VueRouter);
 Vue.component("BaseCard", BaseCard);
+Vue.component("BaseButton", BaseButton);
 
 new Vue({
   store,

@@ -2,19 +2,21 @@
   <div>
     <section>FILTER</section>
     <section>
-      <div class="controls">
-        <button>REFRESH</button>
-        <router-link to="/register">REGISTER</router-link>
-      </div>
       <ul v-if="hasPotatoes">
         <BaseCard>
+          <div class="controls">
+            <BaseButton>REFRESH</BaseButton>
+            <BaseButton link="true" to="/register"
+              >REGISTER MY POTATO</BaseButton
+            >
+          </div>
           <PotatoComponent
             v-for="potato in getPotatoes"
             :key="potato.id"
             :potato="potato"
         /></BaseCard>
       </ul>
-      <h1 v-else>NO POTATOES -_-;</h1>
+      <h1 v-else>NO POTATOES -_- ;</h1>
     </section>
   </div>
 </template>
@@ -34,4 +36,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.controls a {
+  text-decoration: none;
+}
+</style>
