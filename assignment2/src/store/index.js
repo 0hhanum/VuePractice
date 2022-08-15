@@ -7,11 +7,17 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state() {
-    return {};
+    return {
+      userId: "temp",
+    };
   },
   mutations: {},
   actions: {},
-  getter: {},
+  getters: {
+    getCurrentUser(state) {
+      return state.userId;
+    },
+  },
   modules: { potato },
 });
 

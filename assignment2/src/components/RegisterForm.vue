@@ -3,29 +3,41 @@
     <div id="form-divider">
       <div id="form-control">
         <div class="form-input-container">
-          <label for="name">Name</label>
+          <label :class="{ invalid: !formName.isValid }" for="name">Name</label>
           <input
-            v-model.trim="formName"
-            required
+            @focus="clearInvalid('formName')"
+            :class="{ invalid: !formName.isValid }"
+            v-model.trim="formName.val"
             id="name"
             type="text"
             placeholder="Potato..."
           />
         </div>
         <div class="form-input-container">
-          <label for="price">Price</label>
-          <input v-model.number="formPrice" required id="price" type="number" />
-          <span> $</span>
+          <label for="price" :class="{ invalid: !formPrice.isValid }"
+            >Price</label
+          >
+          <input
+            @focus="clearInvalid('formPrice')"
+            :class="{ invalid: !formPrice.isValid }"
+            v-model.number="formPrice.val"
+            id="price"
+            type="number"
+          />
+          <span :class="{ invalid: !formPrice.isValid }"> $</span>
         </div>
         <div class="form-input-container">
-          <label for="weight">Weight</label>
+          <label :class="{ invalid: !formWeight.isValid }" for="weight"
+            >Weight</label
+          >
           <input
-            v-model.number="formWeight"
-            required
+            @focus="clearInvalid('formWeight')"
+            :class="{ invalid: !formWeight.isValid }"
+            v-model.number="formWeight.val"
             id="weight"
             type="number"
           />
-          <span> KG</span>
+          <span :class="{ invalid: !formWeight.isValid }"> KG</span>
         </div>
       </div>
       <div class="img">
@@ -56,9 +68,19 @@ export default {
   data() {
     return {
       isPreviewLoaded: false,
-      formName: null,
-      formWeight: null,
-      formPrice: null,
+      isFormValid: true,
+      formName: {
+        val: null,
+        isValid: true,
+      },
+      formWeight: {
+        val: null,
+        isValid: true,
+      },
+      formPrice: {
+        val: null,
+        isValid: true,
+      },
       formImg: null,
     };
   },
@@ -81,15 +103,36 @@ export default {
         this.isPreviewLoaded = true;
       }
     },
+    clearInvalid(target) {
+      this[target].isValid = true;
+    },
+    validateForm() {
+      if (this.formName.val === null || this.formName.val === "") {
+        this.formName.isValid = false;
+        this.isFormValid = false;
+      }
+      if (this.formPrice.val === null) {
+        this.formPrice.isValid = false;
+        this.isFormValid = false;
+      }
+      if (this.formWeight.val === null) {
+        this.formWeight.isValid = false;
+        this.isFormValid = false;
+      }
+    },
     submitForm() {
-      const potato = {
-        id: Math.random().toString(),
-        name: this.formName,
-        weight: this.formWeight,
-        price: this.formPrice,
-        img: this.formImg,
-      };
-      this.$emit("submit-form", potato);
+      this.validateForm();
+      if (this.isFormValid) {
+        const potato = {
+          id: Math.random().toString(),
+          name: this.formName.val,
+          weight: this.formWeight.val,
+          price: this.formPrice.val,
+          img: this.formImg,
+          owner: this.$store.getters.getCurrentUser,
+        };
+        this.$emit("submit-form", potato);
+      }
     },
   },
 };
@@ -162,5 +205,9 @@ input[type="file"] {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+.invalid {
+  color: red;
+  border-color: red;
 }
 </style>

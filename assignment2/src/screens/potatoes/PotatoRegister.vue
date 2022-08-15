@@ -12,7 +12,7 @@ export default {
   methods: {
     submitForm(potato) {
       this.$store.dispatch("addPotato", potato);
-      this.$router.push("/");
+      this.$router.replace("/potatoes");
     },
   },
 };

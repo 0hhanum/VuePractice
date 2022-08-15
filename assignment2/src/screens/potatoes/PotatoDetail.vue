@@ -3,6 +3,7 @@
     <BaseCard style="width: 800px; padding: 30px 40px">
       <div id="container">
         <div>
+          <h1>Seller: {{ potato.owner }}</h1>
           <h1>{{ potato.name }}</h1>
           <h1>{{ potato.weight }}KG</h1>
           <h1>{{ potato.price }}$</h1>

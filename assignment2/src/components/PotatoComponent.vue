@@ -5,6 +5,7 @@
         <h3 class="potato-info">{{ potato.name }}</h3>
         <span class="potato-info">{{ potato.weight }} kg</span>
         <span class="potato-info">{{ potato.price }} $</span>
+        <span class="potato-info"> Seller : {{ potato.owner }}</span>
       </div>
       <div class="action">
         <BaseButton :styleObject="buttonCSS" :link="true" :to="getDetailLink"
@@ -68,5 +69,8 @@ span {
   overflow: hidden;
   border-right: 1px solid black;
   text-align: center;
+}
+.potato-info:last-child {
+  width: 120px;
 }
 </style>
