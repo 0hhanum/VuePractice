@@ -12,7 +12,7 @@
         </div>
         <div>
           <img :src="potato.img" v-if="potato.img" />
-          <div id="no-image">No Image -_-</div>
+          <div v-else id="no-image">No Image -_-</div>
         </div>
       </div>
     </BaseCard>

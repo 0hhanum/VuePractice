@@ -5,7 +5,7 @@
         <div class="form-input-container">
           <label for="name">Name</label>
           <input
-            v-model="formName"
+            v-model.trim="formName"
             required
             id="name"
             type="text"
@@ -14,12 +14,17 @@
         </div>
         <div class="form-input-container">
           <label for="price">Price</label>
-          <input v-model="formPrice" required id="price" type="number" />
+          <input v-model.number="formPrice" required id="price" type="number" />
           <span> $</span>
         </div>
         <div class="form-input-container">
           <label for="weight">Weight</label>
-          <input v-model="formWeight" required id="weight" type="number" />
+          <input
+            v-model.number="formWeight"
+            required
+            id="weight"
+            type="number"
+          />
           <span> KG</span>
         </div>
       </div>
@@ -42,7 +47,7 @@
         </div>
       </div>
     </div>
-    <button id="submit">Resister</button>
+    <BaseButton id="submit">Resister</BaseButton>
   </form>
 </template>
 
@@ -84,8 +89,7 @@ export default {
         price: this.formPrice,
         img: this.formImg,
       };
-      this.$store.dispatch("addPotato", potato);
-      this.$router.push("/");
+      this.$emit("submit-form", potato);
     },
   },
 };
@@ -107,12 +111,12 @@ form {
 img {
   width: 250px;
   height: 250px;
-  background-color: blanchedalmond;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(1, 1, 1, 0.3);
 }
 #img-preview {
   border: 1px dashed gray;
@@ -153,21 +157,6 @@ input {
 }
 input[type="file"] {
   display: none;
-}
-#submit {
-  outline: none;
-  background-color: transparent;
-  border: 0.5px solid gray;
-  border-radius: 20px;
-  height: 3rem;
-  margin-top: 50px;
-}
-#submit:hover {
-  background-color: blanchedalmond;
-  color: green;
-  border: none;
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
 }
 #form-divider {
   display: flex;
