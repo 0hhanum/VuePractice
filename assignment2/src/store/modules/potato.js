@@ -26,13 +26,22 @@ export default {
       ],
     };
   },
-  mutations: {},
+  mutations: {
+    addPotato(state, potato) {
+      state.potatoes.push(potato);
+    },
+  },
   getters: {
     hasPotatoes(state) {
       return state.potatoes && state.potatoes.length > 0;
     },
     getPotatoes(state) {
       return state.potatoes;
+    },
+  },
+  actions: {
+    addPotato(context, potato) {
+      context.commit("addPotato", potato);
     },
   },
 };

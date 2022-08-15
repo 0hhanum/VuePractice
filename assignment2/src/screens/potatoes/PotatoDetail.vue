@@ -11,7 +11,8 @@
           >
         </div>
         <div>
-          <img :src="potato.img" />
+          <img :src="potato.img" v-if="potato.img" />
+          <div id="no-image">No Image -_-</div>
         </div>
       </div>
     </BaseCard>
@@ -37,11 +38,17 @@ export default {
 </script>
 
 <style scoped>
-img {
+img,
+#no-image {
   width: 300px;
   height: 300px;
   border-radius: 20px;
   box-shadow: 0 6px 12px rgba(1, 1, 1, 0.2);
+}
+#no-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #container {
   display: flex;

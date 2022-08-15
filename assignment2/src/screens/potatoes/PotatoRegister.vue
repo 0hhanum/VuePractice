@@ -10,4 +10,4 @@ import RegisterForm from "@/components/RegisterForm.vue";
 export default { components: { RegisterForm } };
 </script>
 
-<style></style>
+<style scoped></style>
