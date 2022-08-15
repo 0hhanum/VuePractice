@@ -1,9 +1,13 @@
 <template>
-  <h1>REGISTER POTATO</h1>
+  <BaseCard>
+    <h1>REGISTER POTATO</h1>
+    <RegisterForm></RegisterForm>
+  </BaseCard>
 </template>
 
 <script>
-export default {};
+import RegisterForm from "@/components/RegisterForm.vue";
+export default { components: { RegisterForm } };
 </script>
 
 <style></style>

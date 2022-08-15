@@ -27,6 +27,7 @@ html {
   -webkit-font-smoothing: antialiased;
   color: #2c3e50;
   font-weight: lighter;
+  min-width: 1050px;
 }
 
 #container {
