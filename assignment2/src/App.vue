@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <ToastMessage ref="toastMessage" />
     <TheHeader></TheHeader>
     <div id="container">
       <div id="contents">
@@ -11,13 +12,24 @@
 
 <script>
 import TheHeader from "./components/layouts/TheHeader.vue";
+import ToastMessage from "./components/ui/ToastMessage.vue";
 
 export default {
   name: "App",
   components: {
     TheHeader,
+    ToastMessage,
   },
-  mounted() {},
+  methods: {
+    createMessage(message, type) {
+      this.$refs.toastMessage.createMessage(message, type);
+    },
+  },
+  provide() {
+    return {
+      toastMessage: this.createMessage,
+    };
+  },
 };
 </script>
 

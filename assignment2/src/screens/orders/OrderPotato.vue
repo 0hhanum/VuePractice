@@ -41,6 +41,7 @@
 
 <script>
 export default {
+  inject: ["toastMessage"],
   data() {
     return {
       amount: { isValid: true, val: null },
@@ -51,6 +52,7 @@ export default {
   },
   methods: {
     submitOrder() {
+      this.isValid = true;
       this.validateFields();
       if (this.isValid) {
         const orderObj = {
@@ -60,6 +62,7 @@ export default {
         };
         this.$store.dispatch("addOrder", orderObj);
         this.$router.push({ name: "potatoDetail" });
+        this.toastMessage("Order Complete :)");
       }
     },
     validateFields() {
@@ -115,5 +118,6 @@ button {
 
 .invalid {
   color: red;
+  border-color: red !important;
 }
 </style>

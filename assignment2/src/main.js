@@ -8,11 +8,12 @@ import router from "./router";
 
 import BaseCard from "@/components/ui/BaseCard";
 import BaseButton from "@/components/ui/BaseButton";
-// import BaseBadge from "@/components/ui/BaseBadge";
+import ToastMessage from "@/components/ui/ToastMessage";
 
 Vue.use(VueRouter);
 Vue.component("BaseCard", BaseCard);
 Vue.component("BaseButton", BaseButton);
+Vue.component("ToastMessage", ToastMessage);
 
 new Vue({
   store,
