@@ -13,9 +13,10 @@ const routes = [
   { path: "/", redirect: "/potatoes" },
   { path: "/potatoes", component: PotatoList },
   {
+    name: "potatoDetail",
     path: "/potatoes/:id",
     component: PotatoDetail,
-    children: [{ path: "order", component: OrderPotato }],
+    children: [{ name: "order", path: "order", component: OrderPotato }],
   },
   { path: "/register", component: PotatoRegister },
   { path: "/ordered", component: OrderedPotato },

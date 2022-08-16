@@ -2,6 +2,7 @@ import Vuex from "vuex";
 import Vue from "vue";
 
 import potato from "./modules/potato";
+import order from "./modules/order";
 
 Vue.use(Vuex);
 
@@ -18,7 +19,7 @@ const store = new Vuex.Store({
       return state.userId;
     },
   },
-  modules: { potato },
+  modules: { potato, order },
 });
 
 export default store;

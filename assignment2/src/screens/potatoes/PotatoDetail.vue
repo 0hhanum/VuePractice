@@ -1,13 +1,16 @@
 <template>
   <section>
-    <BaseCard style="width: 800px; padding: 30px 40px">
+    <BaseCard class="base-card--detail">
       <div id="container">
         <div>
           <h1>Seller: {{ potato.owner }}</h1>
           <h1>{{ potato.name }}</h1>
           <h1>{{ potato.weight }}KG</h1>
           <h1>{{ potato.price }}$</h1>
-          <BaseButton :link="true" :to="`${currentPath}/order`"
+          <BaseButton
+            v-if="$route.name !== 'order'"
+            :link="true"
+            :to="`${currentPath}/order`"
             >ORDER</BaseButton
           >
         </div>
@@ -17,7 +20,9 @@
         </div>
       </div>
     </BaseCard>
-    <router-view></router-view>
+    <BaseCard class="base-card--detail" v-if="$route.name === 'order'">
+      <router-view></router-view>
+    </BaseCard>
   </section>
 </template>
 
@@ -59,5 +64,9 @@ a {
   display: flex;
   width: fit-content;
   margin-top: 120px;
+}
+.base-card--detail {
+  width: 800px;
+  padding: 30px 40px !important;
 }
 </style>
