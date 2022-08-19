@@ -19,7 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const actionCodeSettings = {
-  url: "http://localhost:8080",
+  url: "http://localhost:8080/login",
   // This must be true.
   handleCodeInApp: true,
 };
