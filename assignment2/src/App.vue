@@ -1,12 +1,10 @@
 <template>
   <div id="app">
     <ToastMessage ref="toastMessage" />
-    <div v-if="isSignIn">
-      <TheHeader></TheHeader>
-      <div id="container">
-        <div id="contents">
-          <router-view></router-view>
-        </div>
+    <TheHeader></TheHeader>
+    <div id="container">
+      <div id="contents">
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -23,10 +21,10 @@ export default {
     TheHeader,
     ToastMessage,
   },
-  data() {
-    return {
-      isSignIn: false,
-    };
+  computed: {
+    getIsSignIn() {
+      return this.$store.getters.getIsSignIn;
+    },
   },
   methods: {
     createMessage(message, type) {
@@ -39,11 +37,12 @@ export default {
     };
   },
   async mounted() {
-    // const isSignIn = await signInFirebase();
-    this.isSignIn = checkSignIn();
-
+    const isSignIn = checkSignIn();
+    if (isSignIn) {
+      this.$store.dispatch("signIn");
+    }
+    console.log(isSignIn);
     console.log(`로그인 : `);
-    console.log(this.isSignIn);
   },
 };
 </script>

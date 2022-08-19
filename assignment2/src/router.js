@@ -8,9 +8,11 @@ import OrderPotato from "./screens/orders/OrderPotato.vue";
 import OrderList from "./screens/orders/OrderList.vue";
 
 import NotFound from "./screens/NotFound.vue";
+import SignIn from "./screens/SignIn.vue";
 
 const routes = [
   { path: "/", redirect: "/potatoes" },
+  { path: "/login", component: SignIn },
   { path: "/potatoes", component: PotatoList },
   {
     name: "potatoDetail",
