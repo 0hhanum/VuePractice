@@ -7,7 +7,7 @@
           <router-link class="nav-btn" to="/potatoes">POTATOES</router-link>
         </li>
         <li>
-          <router-link class="nav-btn" to="/order">ORDER</router-link>
+          <router-link class="nav-btn" to="/orders">ORDER</router-link>
         </li>
         <li></li>
       </ul>

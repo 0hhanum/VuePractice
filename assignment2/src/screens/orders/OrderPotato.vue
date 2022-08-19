@@ -59,10 +59,12 @@ export default {
           amount: this.amount,
           address: this.address,
           message: this.message,
+          owner: this.$route.params.id,
+          orderer: this.$store.state.userId,
         };
         this.$store.dispatch("addOrder", orderObj);
-        this.$router.push({ name: "potatoDetail" });
-        this.toastMessage("Order Complete :)");
+        this.$router.replace({ name: "potatoDetail" });
+        this.toastMessage("Order Complete :)", "success");
       }
     },
     validateFields() {

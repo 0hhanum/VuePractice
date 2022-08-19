@@ -8,11 +8,13 @@
 <script>
 import RegisterForm from "@/components/RegisterForm.vue";
 export default {
+  inject: ["toastMessage"],
   components: { RegisterForm },
   methods: {
     submitForm(potato) {
       this.$store.dispatch("addPotato", potato);
       this.$router.replace("/potatoes");
+      this.toastMessage("Potato Registered :)", "success");
     },
   },
 };

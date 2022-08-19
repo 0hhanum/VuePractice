@@ -1,9 +1,0 @@
-<template>
-  <h1>ORDERED</h1>
-</template>
-
-<script>
-export default {};
-</script>
-
-<style></style>
