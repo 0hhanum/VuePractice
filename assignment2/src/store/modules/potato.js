@@ -43,8 +43,13 @@ export default {
     },
   },
   actions: {
-    addPotato(context, potato) {
+    async addPotato(context, potato) {
       context.commit("addPotato", potato);
+      const response = await fetch(
+        `${process.env.VUE_APP_DATABASE_URL}/potatoes/${potato.owner}.json`,
+        { method: "PUT", body: JSON.stringify(potato) }
+      );
+      console.log(response);
     },
   },
 };
