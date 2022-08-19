@@ -48,3 +48,6 @@ export const signInFirebase = async () => {
     return response;
   }
 };
+export const checkSignIn = () => {
+  return getAuth();
+};

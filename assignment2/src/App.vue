@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <ToastMessage ref="toastMessage" />
-    <TheHeader></TheHeader>
-    <div id="container">
-      <div id="contents">
-        <router-view></router-view>
+    <div v-if="isSignIn">
+      <TheHeader></TheHeader>
+      <div id="container">
+        <div id="contents">
+          <router-view></router-view>
+        </div>
       </div>
     </div>
   </div>
@@ -13,13 +15,18 @@
 <script>
 import TheHeader from "./components/layouts/TheHeader.vue";
 import ToastMessage from "./components/ui/ToastMessage.vue";
-import { signInFirebase } from "./firebase";
+import { checkSignIn } from "./firebase";
 
 export default {
   name: "App",
   components: {
     TheHeader,
     ToastMessage,
+  },
+  data() {
+    return {
+      isSignIn: false,
+    };
   },
   methods: {
     createMessage(message, type) {
@@ -32,9 +39,11 @@ export default {
     };
   },
   async mounted() {
-    const isSignIn = await signInFirebase();
+    // const isSignIn = await signInFirebase();
+    this.isSignIn = checkSignIn();
+
     console.log(`로그인 : `);
-    console.log(isSignIn);
+    console.log(this.isSignIn);
   },
 };
 </script>
