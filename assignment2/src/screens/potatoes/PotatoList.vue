@@ -77,8 +77,10 @@ export default {
     },
     sendSignInLink() {
       sendSignInLink("rntls123@naver.com");
+      this.toastMessage("Verification mail is sent !", "success");
     },
   },
+  inject: ["toastMessage"],
 };
 </script>
 

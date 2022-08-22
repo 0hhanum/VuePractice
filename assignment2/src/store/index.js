@@ -16,6 +16,8 @@ const store = new Vuex.Store({
   },
   mutations: {
     signIn(state, userId, uid) {
+      console.log(userId);
+      console.log(uid);
       state.isSignIn = true;
       state.userId = userId;
       state.uid = uid;

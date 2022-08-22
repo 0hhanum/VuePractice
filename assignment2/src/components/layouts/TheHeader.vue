@@ -4,6 +4,9 @@
     <nav>
       <ul>
         <li>
+          <span class="nav-btn" v-if="getIsSignIn">{{ getCurrentUser }}</span>
+        </li>
+        <li>
           <router-link class="nav-btn" to="/potatoes">POTATOES</router-link>
         </li>
         <li>
@@ -16,7 +19,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    getIsSignIn() {
+      return this.$store.getters.getIsSignIn;
+    },
+    getCurrentUser() {
+      return this.$store.getters.getCurrentUser;
+    },
+  },
+};
 </script>
 
 <style scoped>
