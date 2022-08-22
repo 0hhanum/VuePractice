@@ -1,3 +1,5 @@
+import { writeDB } from "@/firebase";
+
 export default {
   state() {
     return {
@@ -43,13 +45,21 @@ export default {
     },
   },
   actions: {
-    async addPotato(context, potato) {
+    addPotato(context, payload) {
+      const { potato } = payload;
       context.commit("addPotato", potato);
-      const response = await fetch(
-        `${process.env.VUE_APP_DATABASE_URL}/potatoes/${potato.owner}.json`,
-        { method: "PUT", body: JSON.stringify(potato) }
-      );
-      console.log(response);
+      /* const response = await fetch(
+        `${process.env.VUE_APP_DATABASE_URL}/potatoes.json`,
+        {
+          method: "PUT",
+          body: JSON.stringify(potato),
+          headers: {
+            uid: uid,
+          },
+        }
+      ); 
+      */
+      writeDB("potatoes", potato);
     },
   },
 };

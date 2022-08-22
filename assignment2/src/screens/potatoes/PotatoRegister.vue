@@ -12,7 +12,7 @@ export default {
   components: { RegisterForm },
   methods: {
     submitForm(potato) {
-      this.$store.dispatch("addPotato", potato);
+      this.$store.dispatch("addPotato", { potato });
       this.$router.replace("/potatoes");
       this.toastMessage("Potato Registered :)", "success");
     },

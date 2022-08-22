@@ -39,7 +39,7 @@ export default {
     if (localStorage.getItem("userId")) {
       const userId = localStorage.getItem("userId");
       const uid = localStorage.getItem("uid");
-      this.$store.dispatch("signIn", userId, uid);
+      this.$store.dispatch("signIn", { userId, uid });
     }
   },
 };

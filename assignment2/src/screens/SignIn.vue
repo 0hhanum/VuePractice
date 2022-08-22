@@ -12,7 +12,7 @@ export default {
       localStorage.setItem("userId", userId);
       localStorage.setItem("uid", uid);
       this.toastMessage("Success to Sign In :)", "success");
-      this.$store.dispatch("signIn", userId, uid);
+      this.$store.dispatch("signIn", { userId, uid });
       this.$router.push("/");
     });
   },

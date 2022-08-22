@@ -15,17 +15,15 @@ const store = new Vuex.Store({
     };
   },
   mutations: {
-    signIn(state, userId, uid) {
-      console.log(userId);
-      console.log(uid);
+    signIn(state, payload) {
       state.isSignIn = true;
-      state.userId = userId;
-      state.uid = uid;
+      state.userId = payload.userId;
+      state.uid = payload.uid;
     },
   },
   actions: {
-    signIn(context, userId, uid) {
-      context.commit("signIn", userId, uid);
+    signIn(context, payload) {
+      context.commit("signIn", payload);
     },
   },
   getters: {

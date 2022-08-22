@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 import {
   getAuth,
   sendSignInLinkToEmail,
@@ -49,11 +49,6 @@ export const signInFirebase = async () => {
   }
 };
 
-export const authObserver = (async () =>
-  await auth.onAuthStateChanged((user) => {
-    if (user) {
-      return user;
-    } else {
-      return false;
-    }
-  }))();
+export const writeDB = (DBLocation, obj) => {
+  set(ref(database, DBLocation), obj);
+};
