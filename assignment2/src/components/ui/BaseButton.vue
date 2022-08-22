@@ -49,5 +49,6 @@ a {
 button:hover,
 a:hover {
   box-shadow: -4px 2px 30px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 </style>

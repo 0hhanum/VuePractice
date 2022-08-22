@@ -48,6 +48,12 @@ export const signInFirebase = async () => {
     return response;
   }
 };
-export const checkSignIn = () => {
-  return getAuth();
-};
+
+export const authObserver = (async () =>
+  await auth.onAuthStateChanged((user) => {
+    if (user) {
+      return user;
+    } else {
+      return false;
+    }
+  }))();

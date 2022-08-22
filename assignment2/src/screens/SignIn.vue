@@ -7,10 +7,14 @@ import { signInFirebase } from "@/firebase";
 export default {
   mounted() {
     signInFirebase().then((response) => {
-      console.log(response);
+      const userId = response.user.auth.currentUser.email;
+      const uid = response.user.uid;
+      this.toastMessage("Success to Sign In :)", "success");
+      this.$store.dispatch("signIn", userId, uid);
       this.$router.push("/");
     });
   },
+  inject: ["toastMessage"],
 };
 </script>
 

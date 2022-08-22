@@ -9,18 +9,21 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state() {
     return {
-      userId: "temp",
+      userId: null,
       isSignIn: false,
+      uid: null,
     };
   },
   mutations: {
-    signIn(state) {
+    signIn(state, userId, uid) {
       state.isSignIn = true;
+      state.userId = userId;
+      state.uid = uid;
     },
   },
   actions: {
-    signIn(context) {
-      context.commit("signIn");
+    signIn(context, userId, uid) {
+      context.commit("signIn", userId, uid);
     },
   },
   getters: {
@@ -29,6 +32,9 @@ const store = new Vuex.Store({
     },
     getIsSignIn(state) {
       return state.isSignIn;
+    },
+    getUid(state) {
+      return state.uid;
     },
   },
   modules: { potato, order },

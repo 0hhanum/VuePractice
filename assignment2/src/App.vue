@@ -13,7 +13,6 @@
 <script>
 import TheHeader from "./components/layouts/TheHeader.vue";
 import ToastMessage from "./components/ui/ToastMessage.vue";
-import { checkSignIn } from "./firebase";
 
 export default {
   name: "App",
@@ -35,14 +34,6 @@ export default {
     return {
       toastMessage: this.createMessage,
     };
-  },
-  async mounted() {
-    const isSignIn = checkSignIn();
-    if (isSignIn) {
-      this.$store.dispatch("signIn");
-    }
-    console.log(isSignIn);
-    console.log(`로그인 : `);
   },
 };
 </script>
