@@ -51,7 +51,8 @@ ul {
 li {
   margin-right: 20px;
 }
-a {
+a,
+span {
   text-decoration: none;
   font-size: 20px;
   color: black;

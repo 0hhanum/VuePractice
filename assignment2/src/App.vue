@@ -35,6 +35,13 @@ export default {
       toastMessage: this.createMessage,
     };
   },
+  mounted() {
+    if (localStorage.getItem("userId")) {
+      const userId = localStorage.getItem("userId");
+      const uid = localStorage.getItem("uid");
+      this.$store.dispatch("signIn", userId, uid);
+    }
+  },
 };
 </script>
 
