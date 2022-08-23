@@ -10,6 +10,8 @@ import OrderList from "./screens/orders/OrderList.vue";
 import NotFound from "./screens/NotFound.vue";
 import SignIn from "./screens/SignIn.vue";
 
+import store from "@/store/index";
+
 const routes = [
   { path: "/", redirect: "/potatoes" },
   { path: "/login", component: SignIn },
@@ -20,7 +22,7 @@ const routes = [
     component: PotatoDetail,
     children: [{ name: "order", path: "order", component: OrderPotato }],
   },
-  { path: "/register", component: PotatoRegister },
+  { name: "register", path: "/register", component: PotatoRegister },
   { path: "/orders", component: OrderList },
   { path: "/:notFound(.*)", component: NotFound },
 ];
@@ -28,5 +30,17 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name === "order" || to.name === "register") {
+    const isSignIn = store.getters.getIsSignIn;
+    if (isSignIn) {
+      next();
+    } else {
+      next("/");
+    }
+  }
+  next();
 });
 export default router;
