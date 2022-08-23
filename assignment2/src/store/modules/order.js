@@ -1,3 +1,5 @@
+import { writeDB, loadDB } from "@/firebase";
+
 export default {
   state() {
     return {
@@ -6,8 +8,10 @@ export default {
   },
   mutations: {
     addOrder(state, order) {
-      order["id"] = new Date().toISOString();
       state.orders.push(order);
+    },
+    setOrder(state, order) {
+      state.orders = order;
     },
   },
   getters: {
@@ -18,7 +22,15 @@ export default {
   },
   actions: {
     addOrder(context, order) {
+      const id = Math.random().toString().slice(2);
+      order["id"] = id;
+      writeDB(`orders/${id}`, order);
       context.commit("addOrder", order);
+    },
+    async loadOrder(context) {
+      await loadDB("orders").then((response) => {
+        context.commit("setOrder", response);
+      });
     },
   },
 };

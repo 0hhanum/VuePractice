@@ -28,6 +28,12 @@ export default {
       return this.$store.getters.getOrders;
     },
   },
+  mounted() {
+    const orders = this.$store.getters.getOrders;
+    if (orders.length === 0) {
+      this.$store.dispatch("loadOrder");
+    }
+  },
 };
 </script>
 

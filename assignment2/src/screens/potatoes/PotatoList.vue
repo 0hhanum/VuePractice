@@ -12,7 +12,7 @@
       <ul v-if="hasPotatoes">
         <BaseCard>
           <div class="controls">
-            <BaseButton>REFRESH</BaseButton>
+            <BaseButton @click.native="refresh">REFRESH</BaseButton>
             <BaseButton :link="true" to="/register"
               >REGISTER MY POTATO</BaseButton
             >
@@ -73,6 +73,9 @@ export default {
     },
     priceChanged(price) {
       this.filterPrice = price;
+    },
+    refresh() {
+      this.$store.dispatch("loadPotatoes");
     },
   },
 };

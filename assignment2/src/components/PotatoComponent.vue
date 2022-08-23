@@ -71,6 +71,7 @@ span {
   text-align: center;
 }
 .potato-info:last-child {
-  width: 120px;
+  width: fit-content;
+  padding: 0 10px;
 }
 </style>
