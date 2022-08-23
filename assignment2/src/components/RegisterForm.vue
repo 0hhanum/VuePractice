@@ -93,11 +93,12 @@ export default {
       const target = inputEvent.target;
       const preview = this.$refs.preview;
       if (target.files && target.files[0]) {
+        const blob = new Blob([target.files[0]]);
+        this.formImg = blob;
         const reader = new FileReader();
         reader.onload = (e) => {
           const result = e.target.result;
           preview.src = result;
-          this.formImg = result;
         };
         reader.readAsDataURL(target.files[0]);
         this.isPreviewLoaded = true;

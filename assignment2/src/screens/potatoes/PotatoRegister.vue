@@ -14,14 +14,12 @@ export default {
     async submitForm(potato) {
       try {
         await this.$store.dispatch("addPotato", { potato });
+        this.toastMessage("Potato Registered :)", "success");
       } catch (e) {
         console.log(e);
         this.toastMessage("Error Occurred", "warn");
-        this.$router.replace("/potatoes");
-        return;
       }
       this.$router.replace("/potatoes");
-      this.toastMessage("Potato Registered :)", "success");
     },
   },
 };

@@ -29,10 +29,7 @@ export default {
     },
   },
   mounted() {
-    const orders = this.$store.getters.getOrders;
-    if (orders.length === 0) {
-      this.$store.dispatch("loadOrder");
-    }
+    this.$store.dispatch("loadOrder");
   },
 };
 </script>

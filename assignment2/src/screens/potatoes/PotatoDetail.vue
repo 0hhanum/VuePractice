@@ -15,7 +15,7 @@
           >
         </div>
         <div>
-          <img :src="potato.img" v-if="potato.img" />
+          <img :src="imgSrc" v-if="potato.img" />
           <div v-else id="no-image">No Image -_-</div>
         </div>
       </div>
@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       currentPath: null,
+      imgSrc: null,
     };
   },
   created() {
@@ -39,6 +40,16 @@ export default {
     this.potato = this.$store.getters.getPotatoes.find(
       (potato) => potato.id === potatoId
     );
+
+    console.log(this.potato);
+    if (this.potato.img) {
+      const reader = new FileReader();
+      reader.onload = (data) => {
+        console.log(data);
+        this.imgSrc = data.target.result;
+      };
+      reader.readAsDataURL(this.potato.img);
+    }
   },
 };
 </script>

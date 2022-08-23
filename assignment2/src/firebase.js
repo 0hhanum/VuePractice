@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, child } from "firebase/database";
+import { getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
 import {
   getAuth,
   sendSignInLinkToEmail,
@@ -24,7 +25,16 @@ const actionCodeSettings = {
   handleCodeInApp: true,
 };
 
+// DB
 export const database = getDatabase(app);
+// STORAGE
+export const storage = getStorage(app);
+const storageReference = storageRef(storage);
+
+/**
+ * 인증 메일 전송 메서드
+ * @param {String} email 메일 주소
+ */
 export const sendSignInLink = (email) => {
   sendSignInLinkToEmail(auth, email, actionCodeSettings)
     .then(() => {
@@ -63,3 +73,12 @@ export const loadDB = async (DBLocation) => {
     }
   });
 };
+
+export async function uploadStorage(file) {
+  const response = await uploadBytes(storageReference, file).then(
+    (snapshot) => {
+      console.log(snapshot);
+    }
+  );
+  console.log(response);
+}

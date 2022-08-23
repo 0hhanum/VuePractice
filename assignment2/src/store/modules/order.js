@@ -7,9 +7,6 @@ export default {
     };
   },
   mutations: {
-    addOrder(state, order) {
-      state.orders.push(order);
-    },
     setOrder(state, order) {
       state.orders = order;
     },
@@ -25,7 +22,6 @@ export default {
       const id = Math.random().toString().slice(2);
       order["id"] = id;
       await writeDB(`orders/${id}`, order);
-      context.commit("addOrder", order);
     },
     async loadOrder(context) {
       await loadDB("orders").then((response) => {
