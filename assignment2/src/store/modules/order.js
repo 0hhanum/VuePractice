@@ -21,10 +21,10 @@ export default {
     },
   },
   actions: {
-    addOrder(context, order) {
+    async addOrder(context, order) {
       const id = Math.random().toString().slice(2);
       order["id"] = id;
-      writeDB(`orders/${id}`, order);
+      await writeDB(`orders/${id}`, order);
       context.commit("addOrder", order);
     },
     async loadOrder(context) {

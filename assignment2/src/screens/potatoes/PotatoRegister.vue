@@ -11,8 +11,15 @@ export default {
   inject: ["toastMessage"],
   components: { RegisterForm },
   methods: {
-    submitForm(potato) {
-      this.$store.dispatch("addPotato", { potato });
+    async submitForm(potato) {
+      try {
+        await this.$store.dispatch("addPotato", { potato });
+      } catch (e) {
+        console.log(e);
+        this.toastMessage("Error Occurred", "warn");
+        this.$router.replace("/potatoes");
+        return;
+      }
       this.$router.replace("/potatoes");
       this.toastMessage("Potato Registered :)", "success");
     },

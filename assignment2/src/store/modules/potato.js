@@ -23,10 +23,10 @@ export default {
     },
   },
   actions: {
-    addPotato(context, payload) {
+    async addPotato(context, payload) {
       const { potato } = payload;
+      await writeDB(`potatoes/${potato.id.toString().slice(2)}`, potato);
       context.commit("addPotato", potato);
-      writeDB(`potatoes/${potato.id.toString().slice(2)}`, potato);
     },
     async loadPotatoes(context) {
       await loadDB("potatoes").then((response) => {

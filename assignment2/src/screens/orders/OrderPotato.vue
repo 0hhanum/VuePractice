@@ -51,7 +51,7 @@ export default {
     };
   },
   methods: {
-    submitOrder() {
+    async submitOrder() {
       this.isValid = true;
       this.validateFields();
       if (this.isValid) {
@@ -62,7 +62,14 @@ export default {
           owner: this.$route.params.id,
           orderer: this.$store.state.userId,
         };
-        this.$store.dispatch("addOrder", orderObj);
+        try {
+          await this.$store.dispatch("addOrder", orderObj);
+        } catch (e) {
+          console.log(e);
+          this.toastMessage("Error Occurred", "warn");
+          this.$router.replace({ name: "potatoDetail" });
+          return;
+        }
         this.$router.replace({ name: "potatoDetail" });
         this.toastMessage("Order Complete :)", "success");
       }

@@ -50,8 +50,10 @@ export const signInFirebase = async () => {
 };
 
 const dbRef = ref(getDatabase());
-export const writeDB = (DBLocation, obj) => {
-  set(ref(database, DBLocation), { ...obj });
+export const writeDB = async (DBLocation, obj) => {
+  await set(ref(database, DBLocation), { ...obj }).catch((e) => {
+    throw e;
+  });
 };
 export const loadDB = async (DBLocation) => {
   return await get(child(dbRef, DBLocation)).then((snapshot) => {
