@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, get, child } from "firebase/database";
 import {
   getAuth,
   sendSignInLinkToEmail,
@@ -49,6 +49,15 @@ export const signInFirebase = async () => {
   }
 };
 
+const dbRef = ref(getDatabase());
 export const writeDB = (DBLocation, obj) => {
-  set(ref(database, DBLocation), obj);
+  set(ref(database, DBLocation), { ...obj });
+};
+export const loadDB = async (DBLocation) => {
+  return await get(child(dbRef, DBLocation)).then((snapshot) => {
+    if (snapshot.exists()) {
+      const data = Object.values(snapshot.val());
+      return data;
+    }
+  });
 };

@@ -12,7 +12,7 @@
       <ul v-if="hasPotatoes">
         <BaseCard>
           <div class="controls">
-            <BaseButton @click.native="sendSignInLink">REFRESH</BaseButton>
+            <BaseButton>REFRESH</BaseButton>
             <BaseButton :link="true" to="/register"
               >REGISTER MY POTATO</BaseButton
             >
@@ -32,7 +32,6 @@
 import { mapGetters } from "vuex";
 import PotatoComponent from "@/components/PotatoComponent.vue";
 import PotatoFilter from "@/components/PotatoFilter.vue";
-import { sendSignInLink } from "@/firebase";
 
 export default {
   data() {
@@ -75,12 +74,7 @@ export default {
     priceChanged(price) {
       this.filterPrice = price;
     },
-    sendSignInLink() {
-      sendSignInLink("rntls123@naver.com");
-      this.toastMessage("Verification mail is sent !", "success");
-    },
   },
-  inject: ["toastMessage"],
 };
 </script>
 

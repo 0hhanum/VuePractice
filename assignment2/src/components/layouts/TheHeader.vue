@@ -5,6 +5,7 @@
       <ul>
         <li>
           <span class="nav-btn" v-if="getIsSignIn">{{ getCurrentUser }}</span>
+          <span class="nav-btn" @click="sendSignInLink" v-else>Sign In</span>
         </li>
         <li>
           <router-link class="nav-btn" to="/potatoes">POTATOES</router-link>
@@ -19,13 +20,22 @@
 </template>
 
 <script>
+import { sendSignInLink } from "@/firebase";
+
 export default {
+  inject: ["toastMessage"],
   computed: {
     getIsSignIn() {
       return this.$store.getters.getIsSignIn;
     },
     getCurrentUser() {
       return this.$store.getters.getCurrentUser;
+    },
+  },
+  methods: {
+    sendSignInLink() {
+      sendSignInLink("rntls123@naver.com");
+      this.toastMessage("Verification mail is sent !", "success");
     },
   },
 };
@@ -56,6 +66,7 @@ span {
   text-decoration: none;
   font-size: 20px;
   color: black;
+  cursor: pointer;
 }
 .router-link-active.nav-btn {
   color: tomato;

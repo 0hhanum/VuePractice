@@ -36,6 +36,7 @@ export default {
     };
   },
   mounted() {
+    this.$store.dispatch("loadPotatoes");
     if (localStorage.getItem("userId")) {
       const userId = localStorage.getItem("userId");
       const uid = localStorage.getItem("uid");
