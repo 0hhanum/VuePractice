@@ -6,7 +6,7 @@
       </header>
       <ul>
         <li v-for="order in getOrderList" :key="order.id">
-          <BaseCard>
+          <BaseCard @click.native="$router.push(`/potatoes/${order.owner}`)">
             <div>
               <span>{{ order.id }}</span>
               <span>{{ order.address.val }}</span>
