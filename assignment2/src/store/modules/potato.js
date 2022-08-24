@@ -25,6 +25,7 @@ export default {
   actions: {
     async addPotato(context, payload) {
       const { potato } = payload;
+      console.log(potato);
       await writeDB(`potatoes/${potato.id.toString().slice(2)}`, potato);
       context.commit("addPotato", potato);
     },

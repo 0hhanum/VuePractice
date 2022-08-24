@@ -9,6 +9,7 @@ import OrderList from "./screens/orders/OrderList.vue";
 
 import NotFound from "./screens/NotFound.vue";
 import SignIn from "./screens/SignIn.vue";
+import NeedLogin from "./components/NeedLogin.vue";
 
 import store from "@/store/index";
 
@@ -24,6 +25,7 @@ const routes = [
   },
   { name: "register", path: "/register", component: PotatoRegister },
   { path: "/orders", component: OrderList },
+  { name: "redirect", path: "/redirect", component: NeedLogin },
   { path: "/:notFound(.*)", component: NotFound },
 ];
 
@@ -38,7 +40,7 @@ router.beforeEach((to, from, next) => {
     if (isSignIn) {
       next();
     } else {
-      next("/");
+      next("redirect");
     }
   }
   next();
