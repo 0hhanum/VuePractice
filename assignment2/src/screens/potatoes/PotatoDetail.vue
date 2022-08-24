@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { downloadFile } from "@/firebase";
 export default {
   data() {
     return {
@@ -34,21 +35,25 @@ export default {
       imgSrc: null,
     };
   },
-  created() {
+  async created() {
     this.currentPath = this.$route.path;
     const potatoId = this.$route.params.id;
     this.potato = this.$store.getters.getPotatoes.find(
       (potato) => potato.id === potatoId
     );
 
-    console.log(this.potato);
     if (this.potato.img) {
+      const id = this.potato.id.toString().slice(2);
+      const url = await downloadFile(id);
+      console.log(url);
+      /*
       const reader = new FileReader();
       reader.onload = (data) => {
-        console.log(data);
         this.imgSrc = data.target.result;
       };
-      reader.readAsDataURL(this.potato.img);
+      reader.readAsDataURL(this.potato.img); 
+      */
+      this.imgSrc = url;
     }
   },
 };

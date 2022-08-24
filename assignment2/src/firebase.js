@@ -1,6 +1,11 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, child } from "firebase/database";
-import { getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
+import {
+  getDownloadURL,
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+} from "firebase/storage";
 import {
   getAuth,
   sendSignInLinkToEmail,
@@ -75,8 +80,16 @@ export const loadDB = async (DBLocation) => {
 
 export async function uploadStorage(file, id) {
   const ref = storageRef(storage, id);
-  const response = await uploadBytes(ref, file).then((snapshot) => {
-    console.log(snapshot);
-  });
-  console.log(response);
+  await uploadBytes(ref, file)
+    .then((snapshot) => {
+      console.log(snapshot);
+    })
+    .catch((e) => {
+      throw e;
+    });
+}
+export async function downloadFile(fileId) {
+  const ref = storageRef(storage, fileId);
+  const url = await getDownloadURL(ref);
+  return url;
 }

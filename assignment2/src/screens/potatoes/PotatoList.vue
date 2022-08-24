@@ -9,21 +9,25 @@
       ></PotatoFilter>
     </section>
     <section>
+      <BaseCard>
+        <div class="controls">
+          <BaseButton @click.native="refresh">REFRESH</BaseButton>
+          <BaseButton :link="true" to="/register"
+            >REGISTER MY POTATO</BaseButton
+          >
+        </div>
+      </BaseCard>
       <ul v-if="hasPotatoes">
         <BaseCard>
-          <div class="controls">
-            <BaseButton @click.native="refresh">REFRESH</BaseButton>
-            <BaseButton :link="true" to="/register"
-              >REGISTER MY POTATO</BaseButton
-            >
-          </div>
           <PotatoComponent
             v-for="potato in getFilteredPotatoes"
             :key="potato.id"
             :potato="potato"
         /></BaseCard>
       </ul>
-      <h1 v-else>NO POTATOES -_- ;</h1>
+      <BaseCard v-else>
+        <h1>NO POTATOES -_- ;</h1>
+      </BaseCard>
     </section>
   </div>
 </template>

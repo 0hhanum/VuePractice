@@ -28,6 +28,9 @@ export default {
       if (potato.img) {
         const id = potato.id.toString().slice(2);
         uploadStorage(potato.img, id);
+        potato.img = true;
+      } else {
+        potato.img = false;
       }
       await writeDB(`potatoes/${potato.id.toString().slice(2)}`, potato);
       context.commit("addPotato", potato);
