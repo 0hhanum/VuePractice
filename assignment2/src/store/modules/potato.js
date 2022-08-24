@@ -1,4 +1,4 @@
-import { writeDB, loadDB } from "@/firebase";
+import { writeDB, loadDB, uploadStorage } from "@/firebase";
 
 export default {
   state() {
@@ -25,7 +25,10 @@ export default {
   actions: {
     async addPotato(context, payload) {
       const { potato } = payload;
-      console.log(potato);
+      if (potato.img) {
+        const id = potato.id.toString().slice(2);
+        uploadStorage(potato.img, id);
+      }
       await writeDB(`potatoes/${potato.id.toString().slice(2)}`, potato);
       context.commit("addPotato", potato);
     },

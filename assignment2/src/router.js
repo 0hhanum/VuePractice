@@ -40,7 +40,7 @@ router.beforeEach((to, from, next) => {
     if (isSignIn) {
       next();
     } else {
-      next("redirect");
+      next("/redirect");
     }
   }
   next();

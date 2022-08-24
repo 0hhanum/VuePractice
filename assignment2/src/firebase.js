@@ -29,7 +29,6 @@ const actionCodeSettings = {
 export const database = getDatabase(app);
 // STORAGE
 export const storage = getStorage(app);
-const storageReference = storageRef(storage);
 
 /**
  * 인증 메일 전송 메서드
@@ -74,11 +73,10 @@ export const loadDB = async (DBLocation) => {
   });
 };
 
-export async function uploadStorage(file) {
-  const response = await uploadBytes(storageReference, file).then(
-    (snapshot) => {
-      console.log(snapshot);
-    }
-  );
+export async function uploadStorage(file, id) {
+  const ref = storageRef(storage, id);
+  const response = await uploadBytes(ref, file).then((snapshot) => {
+    console.log(snapshot);
+  });
   console.log(response);
 }
