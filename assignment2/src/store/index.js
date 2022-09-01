@@ -20,10 +20,21 @@ const store = new Vuex.Store({
       state.userId = payload.userId;
       state.uid = payload.uid;
     },
+    signOut(state) {
+      state.isSignIn = false;
+      state.userId = null;
+      state.uid = null;
+    },
   },
   actions: {
     signIn(context, payload) {
+      const expire = localStorage.getItem("expire");
+      const left = expire - new Date();
+
       context.commit("signIn", payload);
+    },
+    signOut(context) {
+      context.commit("signOut");
     },
   },
   getters: {
