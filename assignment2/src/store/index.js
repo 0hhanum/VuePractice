@@ -12,6 +12,7 @@ const store = new Vuex.Store({
       userId: null,
       isSignIn: false,
       uid: null,
+      isAutoSignOut: false,
     };
   },
   mutations: {
@@ -25,16 +26,21 @@ const store = new Vuex.Store({
       state.userId = null;
       state.uid = null;
     },
+    autoSignOut(state) {
+      state.isAutoSignOut = true;
+    },
+    offAutoSignOut(state) {
+      state.isAutoSignOut = false;
+    },
   },
   actions: {
     signIn(context, payload) {
       const expire = localStorage.getItem("expire");
       const left = expire - new Date();
-
       if (left > 0) {
         // 남은 시간 후에 로그아웃
         const timer = setTimeout(function () {
-          context.commit("signOut");
+          context.dispatch("autoSignOut");
           clearTimeout(timer);
         }, left);
         context.commit("signIn", payload);
@@ -52,6 +58,13 @@ const store = new Vuex.Store({
     signOut(context) {
       context.commit("signOut");
     },
+    autoSignOut(context) {
+      context.commit("autoSignOut");
+      context.dispatch("signOut");
+    },
+    offAutoSignOut(context) {
+      context.commit("offAutoSignOut");
+    },
   },
   getters: {
     getCurrentUser(state) {
@@ -62,6 +75,9 @@ const store = new Vuex.Store({
     },
     getUid(state) {
       return state.uid;
+    },
+    getAutoSignOut(state) {
+      return state.isAutoSignOut;
     },
   },
   modules: { potato, order },

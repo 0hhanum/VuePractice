@@ -24,6 +24,16 @@ export default {
     getIsSignIn() {
       return this.$store.getters.getIsSignIn;
     },
+    getAutoSignOut() {
+      return this.$store.getters.getAutoSignOut;
+    },
+  },
+  watch: {
+    getAutoSignOut(val) {
+      if (val === true && this.$route.meta.onlyAuth) {
+        this.$router.replace("/");
+      }
+    },
   },
   methods: {
     createMessage(message, type) {
