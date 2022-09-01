@@ -24,22 +24,42 @@ export default {
   data() {
     return {
       y: null,
+      yType: null,
       optionA: [1, 2, 3],
       optionB: [1],
       selectedOption: [],
     };
   },
-  watch: {},
+  watch: {
+    yType() {
+      console.log("watching yTYPE changed...");
+    },
+    y() {
+      console.log("watching y changed...");
+    },
+  },
   methods: {
     yChange(y) {
       const value = y.target.value;
-      console.log(value);
-      console.log(this.y);
+      console.log("y changed");
       if (value === "num") {
         this.selectedOption = this.optionA;
+        this.yType = this.yType || 1;
       } else {
         this.selectedOption = this.optionB;
+        if (this.yType !== 1) {
+          this.yType = 1;
+        }
       }
+      this.y = value;
+    },
+    yTypeChange(yType) {
+      console.log("yType Changed");
+      const value = yType.target.value;
+      if (y === "str" && value !== 1) {
+        console.log("have to change");
+      }
+      this.yType = value;
     },
   },
 };

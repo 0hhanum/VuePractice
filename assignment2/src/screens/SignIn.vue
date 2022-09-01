@@ -9,8 +9,12 @@ export default {
     signInFirebase().then((response) => {
       const userId = response.user.auth.currentUser.email;
       const uid = response.user.uid;
+      const expire = response.user.stsTokenManager.expirationTime;
+
       localStorage.setItem("userId", userId);
       localStorage.setItem("uid", uid);
+      localStorage.setItem("expire", expire);
+
       this.toastMessage("Success to Sign In :)", "success");
       this.$store.dispatch("signIn", { userId, uid });
       this.$router.push("/");
