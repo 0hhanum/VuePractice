@@ -15,7 +15,7 @@ import store from "@/store/index";
 
 const routes = [
   { path: "/", redirect: "/potatoes" },
-  { path: "/login", component: SignIn },
+  { path: "/login", component: SignIn, meta: { onlyUnAuth: true } },
   { path: "/potatoes", component: PotatoList },
   {
     name: "potatoDetail",
@@ -23,8 +23,13 @@ const routes = [
     component: PotatoDetail,
     children: [{ name: "order", path: "order", component: OrderPotato }],
   },
-  { name: "register", path: "/register", component: PotatoRegister },
-  { path: "/orders", component: OrderList },
+  {
+    name: "register",
+    path: "/register",
+    component: PotatoRegister,
+    meta: { onlyAuth: true },
+  },
+  { path: "/orders", component: OrderList, meta: { onlyAuth: true } },
   { name: "redirect", path: "/redirect", component: NeedLogin },
   { path: "/:notFound(.*)", component: NotFound },
 ];
@@ -35,13 +40,16 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name === "order" || to.name === "register") {
-    const isSignIn = store.getters.getIsSignIn;
-    if (isSignIn) {
+  const isSignIn = store.getters.getIsSignIn;
+  if (to.meta.onlyAuth) {
+    store.dispatch("trySignIn");
+    if (store.getters.getIsSignIn) {
       next();
     } else {
       next("/redirect");
     }
+  } else if (to.meta.onlyUnAuth && isSignIn) {
+    next("/");
   }
   next();
 });

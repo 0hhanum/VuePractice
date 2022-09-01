@@ -10,6 +10,7 @@ export default {
       const userId = response.user.auth.currentUser.email;
       const uid = response.user.uid;
       const expire = response.user.stsTokenManager.expirationTime;
+      // const expire = +new Date() + 5000;
 
       localStorage.setItem("userId", userId);
       localStorage.setItem("uid", uid);

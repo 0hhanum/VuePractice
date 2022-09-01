@@ -30,12 +30,24 @@ const store = new Vuex.Store({
     signIn(context, payload) {
       const expire = localStorage.getItem("expire");
       const left = expire - new Date();
-      // 남은 시간 후에 로그아웃
-      const timer = setTimeout(function () {
-        context.commit("signOut");
-        clearTimeout(timer);
-      }, left);
-      context.commit("signIn", payload);
+
+      if (left > 0) {
+        // 남은 시간 후에 로그아웃
+        const timer = setTimeout(function () {
+          context.commit("signOut");
+          clearTimeout(timer);
+        }, left);
+        context.commit("signIn", payload);
+      }
+    },
+    trySignIn(context) {
+      if (!context.getters.getIsSignIn) {
+        const userId = localStorage.getItem("userId");
+        const uid = localStorage.getItem("uid");
+        if (userId) {
+          context.dispatch("signIn", { userId, uid });
+        }
+      }
     },
     signOut(context) {
       context.commit("signOut");

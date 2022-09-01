@@ -35,12 +35,10 @@ export default {
       toastMessage: this.createMessage,
     };
   },
-  mounted() {
+  created() {
     this.$store.dispatch("loadPotatoes");
-    if (localStorage.getItem("userId")) {
-      const userId = localStorage.getItem("userId");
-      const uid = localStorage.getItem("uid");
-      this.$store.dispatch("signIn", { userId, uid });
+    if (!this.getIsSignIn && localStorage.getItem("userId")) {
+      this.$store.dispatch("trySignIn");
     }
   },
 };
