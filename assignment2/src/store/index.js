@@ -57,6 +57,7 @@ const store = new Vuex.Store({
     },
     signOut(context) {
       context.commit("signOut");
+      localStorage.clear();
     },
     autoSignOut(context) {
       context.commit("autoSignOut");

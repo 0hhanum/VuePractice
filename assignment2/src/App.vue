@@ -32,6 +32,7 @@ export default {
     getAutoSignOut(val) {
       if (val === true && this.$route.meta.onlyAuth) {
         this.$router.replace("/");
+        this.$store.dispatch("offAutoSignOut");
       }
     },
   },
