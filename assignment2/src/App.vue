@@ -47,6 +47,9 @@ export default {
     };
   },
   created() {
+    if (!window.location.href.includes("localhost")) {
+      this.$store.dispatch("changeToProduction");
+    }
     this.$store.dispatch("loadPotatoes");
     if (!this.getIsSignIn && localStorage.getItem("userId")) {
       this.$store.dispatch("trySignIn");

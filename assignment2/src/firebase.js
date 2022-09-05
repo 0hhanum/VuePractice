@@ -12,6 +12,7 @@ import {
   isSignInWithEmailLink,
   signInWithEmailLink,
 } from "firebase/auth";
+import store from "@/store/index";
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_API_KEY,
@@ -25,7 +26,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const actionCodeSettings = {
-  url: "http://localhost:8080/login",
+  url: store.getters.isLocal
+    ? "http://localhost:8080/login"
+    : "https://vue2-cc0a4.web.app/login",
   // This must be true.
   handleCodeInApp: true,
 };

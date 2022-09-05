@@ -13,6 +13,7 @@ const store = new Vuex.Store({
       isSignIn: false,
       uid: null,
       isAutoSignOut: false,
+      isLocal: true,
     };
   },
   mutations: {
@@ -31,6 +32,9 @@ const store = new Vuex.Store({
     },
     offAutoSignOut(state) {
       state.isAutoSignOut = false;
+    },
+    changeToProduction(state) {
+      state.isLocal = false;
     },
   },
   actions: {
@@ -66,6 +70,9 @@ const store = new Vuex.Store({
     offAutoSignOut(context) {
       context.commit("offAutoSignOut");
     },
+    changeToProduction(context) {
+      context.commit("changeToProduction");
+    },
   },
   getters: {
     getCurrentUser(state) {
@@ -79,6 +86,9 @@ const store = new Vuex.Store({
     },
     getAutoSignOut(state) {
       return state.isAutoSignOut;
+    },
+    getIsLocal(state) {
+      return state.isLocal;
     },
   },
   modules: { potato, order },
