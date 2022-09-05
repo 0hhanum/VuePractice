@@ -5,13 +5,16 @@ import PotatoList from "./screens/potatoes/PotatoList.vue";
 import PotatoRegister from "./screens/potatoes/PotatoRegister.vue";
 
 import OrderPotato from "./screens/orders/OrderPotato.vue";
-import OrderList from "./screens/orders/OrderList.vue";
+// import OrderList from "./screens/orders/OrderList.vue";
 
 import NotFound from "./screens/NotFound.vue";
-import SignIn from "./screens/SignIn.vue";
+// import SignIn from "./screens/SignIn.vue";
 import NeedLogin from "./components/NeedLogin.vue";
 
 import store from "@/store/index";
+
+const OrderList = () => import("./screens/orders/OrderList.vue");
+const SignIn = () => import("./screens/SignIn.vue");
 
 const routes = [
   { path: "/", redirect: "/potatoes" },

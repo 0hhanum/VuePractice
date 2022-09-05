@@ -22,6 +22,7 @@
 </template>
 
 <script>
+console.log("order downloaded");
 export default {
   computed: {
     getOrderList() {
