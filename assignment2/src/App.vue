@@ -47,6 +47,7 @@ export default {
     };
   },
   created() {
+    console.log(process.env);
     if (!window.location.href.includes("localhost")) {
       this.$store.dispatch("changeToProduction");
     }
