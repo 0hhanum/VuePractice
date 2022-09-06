@@ -17,6 +17,9 @@ jobs:
         run: npm ci
         working-directory: ./assignment2
 
+      - name: use dotenv
+        run: firebase use dev
+
       - name: Build and deploy
         run: npm run build
         working-directory: ./assignment2
