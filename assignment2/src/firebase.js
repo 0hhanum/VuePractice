@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, child } from "firebase/database";
+import { initializeApp } from "@firebase/app";
+import { getDatabase, ref, set, get, child } from "@firebase/database";
 import {
   getDownloadURL,
   getStorage,
@@ -26,7 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const actionCodeSettings = {
-  url: store.getters.isLocal
+  url: store.getters.getIsLocal
     ? "http://localhost:8080/login"
     : "https://vue2-cc0a4.web.app/login",
   // This must be true.
