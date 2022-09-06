@@ -2,12 +2,10 @@
 # https://github.com/firebase/firebase-tools
 
 name: CI - TEST
-"on":
+on:
   pull_request:
     branches:
       - master
-    paths:
-      - "VuePractice/assignment2"
 jobs:
   deploy:
     if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
@@ -15,10 +13,11 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-        working-directory: ./assignment2
+
       - name: Install Dependencies
         run: npm ci
         working-directory: ./assignment2
+
       - name: Build and deploy
         run: npm run build
         working-directory: ./assignment2
