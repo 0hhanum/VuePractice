@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": "./assignment2/dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
