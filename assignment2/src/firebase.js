@@ -5,13 +5,13 @@ import {
   getStorage,
   ref as storageRef,
   uploadBytes,
-} from "firebase/storage";
+} from "@firebase/storage";
 import {
   getAuth,
   sendSignInLinkToEmail,
   isSignInWithEmailLink,
   signInWithEmailLink,
-} from "firebase/auth";
+} from "@firebase/auth";
 import store from "@/store/index";
 
 const firebaseConfig = {
