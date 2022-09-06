@@ -20,11 +20,11 @@ jobs:
       - name: Build and deploy
         run: npm run deploy
         working-directory: ./assignment2
-        with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_VUE2_CC0A4 }}"
-          projectId: vue2-cc0a4
-          channelId: live
+        # with:
+        #   repoToken: "${{ secrets.GITHUB_TOKEN }}"
+        #   firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_VUE2_CC0A4 }}"
+        #   projectId: vue2-cc0a4
+        #   channelId: live
 
       # - uses: FirebaseExtended/action-hosting-deploy@v0
       # with:
