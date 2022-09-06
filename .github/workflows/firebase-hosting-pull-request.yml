@@ -18,9 +18,8 @@ jobs:
       - name: Install Dependencies
         run: npm ci
         working-directory: ./assignment2
-      - name: Project build
+      - name: Build and deploy
         run: npm run build
-      - name: Deploy to Firebase
         working-directory: ./assignment2
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
