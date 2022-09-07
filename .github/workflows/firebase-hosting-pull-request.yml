@@ -25,7 +25,7 @@ jobs:
 
       - name: dotenv TEST
         run: echo ${{ secrets }}
-
+          echo ${{VUE_APP_API_KEY}}
       - name: Install Dependencies
         run: npm ci
         working-directory: ./assignment2
