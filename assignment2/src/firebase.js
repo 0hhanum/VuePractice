@@ -16,7 +16,8 @@ import store from "@/store/index";
 
 console.log(store.getters.getIsLocal);
 const isLocal = store.getters.getIsLocal;
-
+console.log(process.env);
+console.log(import.meta);
 const firebaseConfig = isLocal
   ? {
       apiKey: process.env.VUE_APP_API_KEY,
