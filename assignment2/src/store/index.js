@@ -6,6 +6,8 @@ import order from "./modules/order";
 
 Vue.use(Vuex);
 
+const isLocal = window.location.href.includes("localhost");
+
 const store = new Vuex.Store({
   state() {
     return {
@@ -13,7 +15,7 @@ const store = new Vuex.Store({
       isSignIn: false,
       uid: null,
       isAutoSignOut: false,
-      isLocal: true,
+      isLocal: isLocal,
     };
   },
   mutations: {
