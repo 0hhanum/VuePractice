@@ -23,6 +23,10 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
+      - name: dotenv TEST
+        run: cat .env
+          echo ${{ secrets }}
+
       - name: Install Dependencies
         run: npm ci
         working-directory: ./assignment2
