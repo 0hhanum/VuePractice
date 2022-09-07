@@ -6,16 +6,7 @@ on:
   push:
     branches:
       - master
-env:
-  VUE_APP_API_KEY: ${{ secrets.VUE_APP_API_KEY }}
-  VUE_APP_AUTH_DOMAIN: ${{ secrets.VUE_APP_AUTH_DOMAIN }}
-  VUE_APP_DATABASE_URL: ${{ secrets.VUE_APP_DATABASE_URL }}
-  VUE_APP_PROJECT_ID: ${{ secrets.VUE_APP_PROJECT_ID }}
-  VUE_APP_STORAGE_BUCKET: ${{ secrets.VUE_APP_STORAGE_BUCKET }}
-  VUE_APP_APP_STORAGE_URL: ${{ secrets.VUE_APP_APP_STORAGE_URL }}
-  VUE_APP_MESSAGING_SENDER_ID: ${{ secrets.VUE_APP_MESSAGING_SENDER_ID }}
-  VUE_APP_APP_ID: ${{ secrets.VUE_APP_APP_ID }}
-  VUE_APP_APP_PW: ${{ secrets.VUE_APP_APP_PW }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,11 +14,22 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: dotenv TEST
-        run: echo ${{ secrets }}
-          echo ${{VUE_APP_API_KEY}}
       - name: Install Dependencies
         run: npm ci
+        working-directory: ./assignment2
+
+      - name: create dotenv
+        run: touch .env
+          echo VUE_APP_API_KEY=${{ secrets.VUE_APP_API_KEY }} >> .env
+          echo VUE_APP_AUTH_DOMAIN=${{ secrets.VUE_APP_AUTH_DOMAIN }} >> .env
+          echo VUE_APP_DATABASE_URL=${{ secrets.VUE_APP_DATABASE_URL }} >> .env
+          echo VUE_APP_PROJECT_ID=${{ secrets.VUE_APP_PROJECT_ID }} >> .env
+          echo VUE_APP_STORAGE_BUCKET=${{ secrets.VUE_APP_STORAGE_BUCKET }} >> .env
+          echo VUE_APP_APP_STORAGE_URL=${{ secrets.VUE_APP_APP_STORAGE_URL }} >> .env
+          echo VUE_APP_MESSAGING_SENDER_ID=${{ secrets.VUE_APP_MESSAGING_SENDER_ID }} >> .env
+          echo VUE_APP_APP_ID=${{ secrets.VUE_APP_APP_ID }} >> .env
+          echo VUE_APP_APP_PW=${{ secrets.VUE_APP_APP_PW }} >> .env
+          cat .env
         working-directory: ./assignment2
 
       - name: Build and deploy
