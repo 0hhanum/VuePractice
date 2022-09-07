@@ -19,7 +19,9 @@ jobs:
         working-directory: ./assignment2
 
       - name: create dotenv
-        run: touch .env
+        run: cd ./assignment2
+          ls
+          touch .env
           echo VUE_APP_API_KEY=${{ secrets.VUE_APP_API_KEY }} >> .env
           echo VUE_APP_AUTH_DOMAIN=${{ secrets.VUE_APP_AUTH_DOMAIN }} >> .env
           echo VUE_APP_DATABASE_URL=${{ secrets.VUE_APP_DATABASE_URL }} >> .env
@@ -30,7 +32,6 @@ jobs:
           echo VUE_APP_APP_ID=${{ secrets.VUE_APP_APP_ID }} >> .env
           echo VUE_APP_APP_PW=${{ secrets.VUE_APP_APP_PW }} >> .env
           cat .env
-        working-directory: ./assignment2
 
       - name: Build and deploy
         run: npm run build
