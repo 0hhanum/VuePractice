@@ -47,7 +47,6 @@ export default {
     };
   },
   created() {
-    console.log(process.env);
     this.$store.dispatch("loadPotatoes");
     if (!this.getIsSignIn && localStorage.getItem("userId")) {
       this.$store.dispatch("trySignIn");
