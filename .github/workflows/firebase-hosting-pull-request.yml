@@ -21,6 +21,7 @@ jobs:
       - name: create dotenv
         run: |
           echo "${{ secrets.VUE__APP_API_KEY }}"
+          echo "${{ secrets.VUE__APP_API_KEY }}"
           touch ./assignment2/.env
           echo "VUE_APP_API_KEY=${{ secrets.VUE_APP_API_KEY }}" >> ./assignment2.env
           echo "VUE_APP_AUTH_DOMAIN=${{ secrets.VUE_APP_AUTH_DOMAIN }}" >> ./assignment2.env
